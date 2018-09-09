@@ -1,0 +1,29 @@
+<div class="posts-back">
+
+  <div　class="form-heading">
+    <p>TASKを新しく作成</p>
+  </div>
+  <%= form_tag("/posts/create", {multipart: true}) do %>
+  <div class="form">
+    <div class="form-body">
+      <p>タイトル</p>
+
+      <% @post.errors.full_messages.each do |message| %>
+        <div class="form-error">
+          <%= message %>
+        </div>
+      <% end %>
+
+      <input type="text" name="title" value="<%= @post.title %>">
+      <p>概要</p>
+      <textarea name="content" ><%= @post.content %></textarea>
+
+      <p>画像</p>
+      <input name="pimage" type="file">
+
+      <input type="submit" value="投稿">
+    </div>
+  </div>
+  <% end %>
+
+</div>

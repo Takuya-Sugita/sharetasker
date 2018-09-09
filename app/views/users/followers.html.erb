@@ -1,0 +1,14 @@
+<div class="users-back">
+  <h1>フォロワーユーザー</h1>
+    <% @follower_users.each do |follower_user| %>
+    <div class="users-box">
+        <div class="user_image">
+          <img src="<%= "/user_images/#{follower_user.image_name}"%>" alt="defa">
+        </div>
+
+       <%= link_to(follower_user.name, "/users/#{follower_user.id}") %>
+       <%= follower_user.id %>
+    </div>
+    <% end %>
+
+</div>

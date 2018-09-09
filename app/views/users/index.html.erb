@@ -1,0 +1,35 @@
+<div class="users-back">
+  <div class="user-search">
+    <% provide(:title, 'All users') %>
+    <h1>ユーザー検索</h1>
+
+    <%= search_form_for @search, url:users_index_path do |f| %>
+      <div class="form-group">
+        <%= f.label :name_cont, "Name" %>
+        <%= f.text_field :name_cont, class: "form-control" %>
+      </div>
+      <div class="actions"><%= f.submit "Search" %></div>
+    <% end %>
+
+    <% if @re_users.any? %>
+      <% @re_users.each do |re_user| %>
+      <div class="users-box">
+          <div class="user_image">
+            <img src="<%= "/user_images/#{re_user.image_name}"%>" alt="defa">
+          </div>
+
+         <%= link_to(re_user.name, "/users/#{re_user.id}") %>
+         <%= re_user.id %>
+      </div>
+      <% end %>
+    <% end %>
+
+    <% if @re_users.nil? %>
+      <ul class="users">
+        <p>該当ユーザーはいませんでした</p>
+      </ul>
+    <% end %>
+  </div>
+
+
+</div>

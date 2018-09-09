@@ -1,0 +1,28 @@
+<div class="posts-back">
+  <div class="posts-box">
+    <% @posts.each do |post| %>
+
+      <%= link_to("/users/#{post.user.id}") do %>
+      <div class="post-user">
+        <div class="post-user-image">
+        <img src="<%= "/user_images/#{post.user.image_name}" %>">
+        </div>
+        <div class="post-user-name">
+          <%= post.user.name %>
+        </div>
+      </div>
+      <% end %>
+
+
+        <div class="posts-index-title">
+          -<%= link_to(post.title, "/posts/#{post.id}") %>-
+        </div>
+
+        <div class="posts-index-content">
+          <p>概要：</p><%= post.content %><br>
+
+        </div>
+        <%= post.id %>
+    <% end %>
+  </div>
+</div>

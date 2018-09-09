@@ -1,0 +1,113 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.posts-back {
+ padding-top: 150px;
+ width: 100%;
+ background-color: #FFFFCC;
+}
+
+.posts-index-title {
+  padding: 20px 30px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 0px 0px #c1ced7;
+  text-align: center;
+  font-size: 30px;
+  z-index: 9999;
+}
+
+.posts-index-content {
+  padding: 20px 30px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 0px 0px #c1ced7;
+  border-bottom: solid 1px black;
+}
+
+.posts-show-table {
+  padding: 20px 30px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 0px 0px #c1ced7;
+  text-align: center;
+  font-size: 30px;
+}
+
+.post-user {
+  background-color: red;
+}
+
+.post-user-image {
+  background-color: orange;
+  width: 100px;
+  height : 100px;
+  background-size: cover;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-user-image img {
+  width: 100%;
+  height: 100%;
+}
+
+.post-user-name {
+  text-align: center;
+}
+
+.challenge-on a {
+  color: red;
+}
+
+.challenge-off a {
+  color: lime;
+}
+
+.comment-form {
+  background-color: lime;
+  width: 80%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comment-form textarea {
+  width: 500px;
+  height: 200px;
+}
+
+.comment-body {
+  background-color: orange
+}
+
+.comment-user-image img {
+  width: 50px;
+  height: 50px;
+  border-radius: 20%;
+}
+
+.post-image {
+  background-size: cover;
+  background-color: lime;
+}
+
+.post-image {
+  width: 100%;
+  height: 100%;
+}
+
+.comment-image {
+  background-color: #11FFFF;
+  width: 300px;
+  height: 250px;
+  background-size: cover;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.comment-image img {
+  width: 100%;
+  height: 100%;
+}
