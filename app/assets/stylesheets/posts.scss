@@ -10,6 +10,7 @@
 .post {
   border: solid 1px silver;
   background-color: white;
+  margin-top: 10px;
 }
 
 .search-box {
@@ -42,14 +43,7 @@
   font-size: 20px;
 }
 
-.posts-show-table {
-  padding: 20px 30px;
-  background-color: white;
-  overflow: hidden;
-  box-shadow: 0 0px 0px #c1ced7;
-  text-align: center;
-  font-size: 30px;
-}
+
 
 .post-user {
   background-color: white;
@@ -133,29 +127,214 @@
   font-size: 20px;
 }
 
-.challenge-on a {
-  color: red;
+// --------------------------posts/show ------------------------
+
+.posts-show-table {
+  width: 60%;
+  background-color: white;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
-.challenge-off a {
-  color: lime;
+.destroy-btn {
+  width: 50px;
+  height: 30px;
+  margin: 10px;
+  text-decoration: none;
+  background: #CC0000;/*ボタン色*/
+  color: white;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+  float: right;
+  padding-bottom: 10px;
+  vertical-align: middle;
 }
 
-.comment-form {
-  background-color: lime;
-  width: 80%;
-  height: 300px;
+.destroy-btn:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+
+.post-show-user {
+  width: 200px;
+  // background-color: red;
+  margin-left: auto;
+  margin-right: auto;
+  display: table-cell;
+  display: inline-block;
+}
+
+ .post-show-title {
+  width: 50%;
+  text-align: left;
   margin-left: auto;
   margin-right: auto;
 }
 
+.post-show-title h1 {
+  margin: 5px;
+}
+
+.post-created-date {
+  // background-color: blue;
+  text-align: right;
+  padding-right: 100px;
+}
+
+.post-image {
+  width: 50%;
+  background-color: white;
+  background-size: cover;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-image img{
+  width: 100%;
+  height: auto;
+  background-color: white
+}
+
+.posts-show-content {
+  width: 80%;
+  min-height: 100px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: solid 1px silver;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: left;
+}
+
+.edit-btn {
+  width: 100px;
+  height: 20px;
+  padding-top: 1;
+  padding-bottom: 1px;
+  text-decoration: none;
+  background: #FF9933;/*ボタン色*/
+  color: white;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+.edit-btn:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+
+.challenge-on {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #668ad8;/*ボタン色*/
+  color: orange;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+  margin-top: 20px;
+}
+
+.challenge-on:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+
+.challenge-on a {
+  color: red;
+}
+
+.challenge-off {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #668ad8;/*ボタン色*/
+  color: white;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+  margin-top: 20px;
+}
+
+.challenge-off:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+
+.challenge-off p {
+  color: white;
+}
+
+.explain-challenge-btn {
+  color: silver;
+}
+
+.count-like {
+  background-color: #DCDCDC;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid 0.5px black;
+  border-radius: 5px;
+}
+
+.count-like h2 {
+
+}
+
+.comment-form {
+  background-color: #AFEEEE;
+  width: 80%;
+  height: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  border: solid 1px silver;
+
+}
+
 .comment-form textarea {
-  width: 500px;
-  height: 200px;
+  width: 100%;
+  height: 100px;
+}
+
+.comment-form input {
+  margin-top: 10px;
 }
 
 .comment-body {
-  background-color: orange
+  background-color: #F0FFFF;
+  padding: 30px;
+  border: solid 1px #E0FFFF;
+  margin-top: 5px;
+}
+
+.comment-user-image {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+}
+
+.comment-content {
+  width: 80%;
+  border: solid 1px silver;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-align: left;
+  padding-left: 10px;
 }
 
 .comment-user-image img {
@@ -164,19 +343,9 @@
   border-radius: 20%;
 }
 
-.post-image {
-  background-size: cover;
-  background-color: lime;
-}
-
-.post-image {
-  width: 100%;
-  height: 100%;
-}
-
 .comment-image {
   background-color: #11FFFF;
-  width: 300px;
+  width: 400px;
   height: 250px;
   background-size: cover;
   margin-left: auto;
@@ -184,7 +353,35 @@
 
 }
 
+.edit-destroy-btn {
+
+  width: 30px;
+  height:25px;
+  text-decoration: none;
+  background: #CC0000;/*ボタン色*/
+  color: white;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+}
+
+
+
 .comment-image img {
   width: 100%;
   height: 100%;
+}
+
+.challenging-user-box {
+  width: 95%;
+  padding: 20px;
+  border: solid 1px silver;
+  border-radius: 5px;
+}
+
+.challenging-user {
+  // background-color: red;
+  padding-top: 10px;
+  width: 120px;
+  height: 120px;
+  margin: 5px;
 }

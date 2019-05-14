@@ -1,17 +1,35 @@
 <div class="posts-back">
   <div class="posts-show-table">
 
+<!-- ----------------------------------post #S--------------------------------- -->
+
+
     <%= link_to("/users/#{@user.id}") do %>
-    <div class="post-user">
-      <div class="post-user-image">
-      <img src="<%= "/user_images/#{@user.image_name}" %>">
+     <div class="post">
+         <% if @post.user_id == current_user.id %>
+           <%= link_to("/posts/#{@post.id}/destroy", {method: "post"}) do %>
+           <div class="destroy-btn">
+             <p>削除</p>
+           </div>
+           <% end %>
+         <% end %>
+
+      <div class="post-show-user">
+        <%= link_to("/users/#{@user.id}") do %>
+        <div class="post-user-image">
+        <img src="<%= "/user_images/#{@user.image_name}" %>">
+        </div>
+        <%= @user.name %>
+        <% end %>
       </div>
-      <%= @user.name %>
-    </div>
     <% end %>
 
+    <div class="post-created-date">
+      <%= @post.created_at %><br>
+    </div>
+
     <div class="posts-show-title">
-      -<%= @post.title %>-
+      <h1><%= @post.title %></h1>
     </div>
 
     <% if @post.post_image %>
@@ -24,34 +42,57 @@
       <%= @post.content %>
     </div>
 
+    <% if @post.user_id == current_user.id %>
+      <%= link_to( "/posts/#{@post.id}/edit") do %>
+        <div class="edit-btn">
+          <p>投稿を編集</p>
+        </div>
+      <% end %>
+    <% end %>
+
+
+
+     <!-- ---------------------------------------post #E------------------------------------ -->
+
+
     <% if Like.find_by(user_id: current_user.id, post_id: @post.id)%>
-      <div class="challenge-on">
-        <%= link_to("チャレンジ中！！", "/likes/#{@post.id}/destroy", {method: "post"}) %>
-      </div>
+        <%= link_to("/likes/#{@post.id}/destroy", {method: "post"}) do %>
+          <div class="challenge-on">
+           <p>チャレンジ中</p>
+          </div>
+        <% end %>
+
+        <div class="explain-challenge-btn">
+          <p>↑クリックしてチャレンジをキャンセル↑</p>
+        </div>
+
     <% else %>
-      <div class="challenge-off">
-        <%= link_to("このTASKをチャレンジする", "/likes/#{@post.id}/create", {method: "post"})%>
+        <%= link_to("/likes/#{@post.id}/create", {method: "post"}) do %>
+        <div class="challenge-off">
+          <p>このTASKをチャレンジする<p>
+        </div>
+        <% end %>
+
+      <div class="explain-challenge-btn">
+        <p>↑クリックしてTASKをチャレンジ↑</p>
       </div>
+
     <% end %>
 
     <div class="count-like">
-      <p>このタスクをチャレンジ中の人数</p><%= @likes_count %>
+      <h2>このタスクをチャレンジ中の人数</h2><%= @likes_count %>
+      <p>人</p>
     </div>
 
-    <% if @post.user_id == current_user.id %>
-    <%= link_to("編集", "/posts/#{@post.id}/edit") %>
-    <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
-    <br>
-    <% end %>
 
 
-    <%= @post.created_at %><br>
-    <%= @post.id %>
+
+
     <br>
 
-    <p>コメント/達成報告</p>
     <%= form_tag("/comments/#{@post.id}/create", {multipart: true}) do %>
     <div class="comment-form">
+      <p>コメント/達成報告</p>
       <div class="form-body">
 
         <% @post.errors.full_messages.each do |message| %>
@@ -67,13 +108,19 @@
     </div>
     <% end %>
 
+  </div>
+
+    <h1>コメント</h1>
+
+
     <% @comments.each do |comment| %>
     <div class="comment-body">
-        <%= link_to(comment.user.name, "/users/#{comment.user_id}") %>
-      <div class="comment-user-image">
-        <img src="<%= "/user_images/#{comment.user.image_name}"%>">
-      </div>
-        <%= comment.comment %>
+        <%= link_to("/users/#{comment.user_id}") do %>
+          <div class="comment-user-image">
+            <img src="<%= "/user_images/#{comment.user.image_name}"%>">
+          </div>
+        <% end %>
+
 
         <% if comment.comment_image %>
           <div class="comment-image">
@@ -81,9 +128,16 @@
           </div>
         <% end %>
 
+        <div class="comment-content">
+          <%= comment.comment %>
+        </div>
 
         <% if current_user.id == comment.user_id %>
-        <%= link_to("削除", "/comments/#{comment.id}/destroy", {method: "post"})%>
+          <%= link_to("/comments/#{comment.id}/destroy", {method: "post"}) do %>
+            <div class="edit-destroy-btn">
+              <p>削</p>
+            </div>
+          <% end %>
         <% end %>
 
     </div>
@@ -91,14 +145,17 @@
 
 
 
-    <p>このタスクに挑戦中のユーザー</p>
+    <h1>このタスクに挑戦中のユーザー</h1>
 
     <% @liked_users.each do |liked_user| %>
-      <%=  link_to(liked_user.name, "/users/#{liked_user.id}")%>
-        <div class="users-box">
-            <div class="user_image">
-              <img src="<%= "/user_images/#{liked_user.image_name}"%>" alt="defa">
-            </div>
+        <div class="challenging-user-box">
+          <div class="challenging-user">
+            <%=  link_to("/users/#{liked_user.id}") do %>
+              <div class="user_image">
+                <img src="<%= "/user_images/#{liked_user.image_name}"%>" alt="defa">
+              </div>
+            <% end %>
+          </div>
         </div>
     <% end %>
 

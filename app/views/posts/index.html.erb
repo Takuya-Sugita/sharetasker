@@ -48,31 +48,6 @@
       </ul>
     <% end %>
 
-<hr>
 
-    <% @posts.each do |post| %>
-    <div class="post">
-      <%= link_to("/users/#{post.user.id}") do %>
-      <div class="post-user">
-        <div class="post-user-image">
-        <img src="<%= "/user_images/#{post.user.image_name}" %>">
-        </div>
-        <div class="post-user-name">
-          <%= post.user.name %>
-        </div>
-      </div>
-      <% end %>
-
-
-        <div class="posts-index-title">
-          -<%= link_to(post.title, "/posts/#{post.id}") %>-
-        </div>
-
-        <div class="posts-index-content">
-          <%= post.content %><br>
-
-        </div>
-      </div>
-    <% end %>
   </div>
 </div>
