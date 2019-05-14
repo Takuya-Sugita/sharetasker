@@ -1,10 +1,10 @@
 <div class="users-back">
+
+  <div class="back-image">
+    <img src="<%= "/back_images/#{@user.back_image}" %>">
+  </div>
+
   <div class="users-indi-box">
-    <div class="back-image">
-      <img src="<%= "/back_images/#{@user.back_image}" %>">
-    </div>
-
-
     <div class="image-back">
       <div class="user_image">
         <img src="<%= "/user_images/#{@user.image_name}"%>" alt="defa">
@@ -15,12 +15,14 @@
     <%= @user.email %>
     <br>
 
-    <% if @user.id == @current_user.id %>
-      <%= link_to("編集", "/users/#{@user.id}/edit") %>
+    <% if @user.id == current_user.id %>
+    <div class="profile-edit-btn">
+      <%= link_to("プロフィール編集", "/users/#{@user.id}/edit") %>
+    </div>
     <% end %>
 
-    <% if @current_user.id != @user.id %>
-      <% if @user.followed_by?(@current_user) %>
+    <% if current_user.id != @user.id %>
+      <% if @user.followed_by?(current_user) %>
         <div class="follow">
           <%= link_to("フォロー済", "/relationships/#{@user.id}/destroy", {method: "post"})%>
         </div>
@@ -32,33 +34,42 @@
     <% end %>
 
 
-
+    <div class="users-tabs-btn">
     <ul class="users-tabs">
-      <li class="active"><%= link_to("投稿", "/users/#{@user.id}") %></li>
-      <li><%= link_to("チャレンジ中のTASK", "/users/#{@user.id}/likes") %></li>
+      <li>
+        <%= link_to("自身の投稿", "/users/#{@user.id}") %>
+      </li>
+      <li>
+        <%= link_to("チャレンジ中のTASK", "/users/#{@user.id}/likes") %>
+      </li>
     </ul>
+    </div>
 
     <% @user.posts.each do |post| %>
-      <%= link_to("/users/#{post.user.id}") do %>
+    <div class="post">
         <div class="post-user">
           <div class="post-user-image">
-          <img src="<%= "/user_images/#{post.user.image_name}" %>">
+            <%= link_to("/users/#{post.user.id}") do %>
+              <img src="<%= "/user_images/#{post.user.image_name}" %>">
+            <% end %>
           </div>
           <div class="post-user-name">
             <%= post.user.name %>
           </div>
         </div>
-      <% end %>
 
+        <%= link_to("/posts/#{post.id}") do %>
       <div class="posts-index-title">
-        -<%= link_to(post.title, "/posts/#{post.id}") %>-
+        <%= post.title %>
       </div>
 
       <div class="posts-index-content">
-        <p>概要：</p><%= post.content %><br>
+        <%= post.content %><br>
 
       </div>
-      <%= post.id %>
+
+    <% end %>
+    </div>
 
     <% end %>
   </div>

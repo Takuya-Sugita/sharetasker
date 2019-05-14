@@ -1,13 +1,13 @@
 class CommentsController < ApplicationController
 
-  before_action :authenticate_user
+  before_action :authenticate_user!
   before_action :confirm_correct_user, {only: [:destroy]}
 
 
   def create
     @comment = Comment.new(
       comment: params[:comment],
-      user_id: @current_user.id,
+      user_id: current_user.id,
       post_id: params[:id]
     )
 
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
 
   def confirm_correct_user
     @comment = Comment.find_by(id: params[:id])
-    if @comment.user_id != @current_user.id
+    if @comment.user_id != current_user.id
       flash[:notice] = "権限がありません"
       redirect_to("posts/index")
     end

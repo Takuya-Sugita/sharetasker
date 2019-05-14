@@ -20,9 +20,9 @@
 
       <div class="header-list">
         <ul>
-          <% if @current_user %>
+          <% if current_user %>
             <li>
-              <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
+              <%= link_to(current_user.name, "/users/#{current_user.id}") %>
             </li>
 
             <li>
@@ -30,7 +30,7 @@
             </li>
 
             <li>
-              <%= link_to("一覧", '/posts/index') %>
+              <%= link_to("TASK一覧", '/posts/index') %>
             </li>
             <li>
               <%= link_to("TASK作成", '/posts/new') %>
@@ -45,7 +45,7 @@
           <% else %>
 
             <li>
-              <%= link_to("新規登録", 'signup') %>
+              <%= link_to("新規登録", "/signup") %>
             </li>
             <li>
               <%= link_to("ログイン", "/login")%>
@@ -61,13 +61,12 @@
         <%= flash[:notice] %>
       </div>
 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
     <% end %>
     <%= yield %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
-    <div class="footer">
-    </div>
+
 
   </body>
 </html>

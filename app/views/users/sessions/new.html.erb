@@ -1,7 +1,7 @@
 <div class="users-back">
 <h2>Log in</h2>
 
-  <%= form_for(resource, as: resource_name, url:users_create_path) do |f| %>
+  <%= form_for(resource, as: resource_name, url:login_path) do |f| %>
     <div class="field">
       <%= f.label :name %><br />
       <%= f.text_field :name, autofocus: true %>

@@ -1,9 +1,9 @@
 .users-back {
- padding-top: 150px;
+ padding-top: 60px;
  width: 100%;
  // height: -webkit-fill-available;
  height: 3000px;
- background-color: #FFFFCC;
+ background-color: #FFFFEE;
 
 }
 
@@ -15,7 +15,7 @@
 }
 
 .image-back {
-  background-color: orange;
+  // background-color: orange;
   width: 100%;
   height:100px;
 }
@@ -33,10 +33,19 @@
 .user_image img {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
 
 .user_image p {
   font-size: 6px;
+}
+
+.profile-edit-btn {
+  background-color: orange;
+  width: 300px;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .users-box {
@@ -60,7 +69,7 @@
   box-shadow: 0 0px 0px #c1ced7;
   text-align: center;
   font-size: 30px;
-  width: 500px;
+  width: 60%;
   height: -webkit-fill-available;
   margin-left: auto;
   margin-right: auto;
@@ -107,8 +116,23 @@
   float: right;
 }
 
-.users-tabs {
-  background-color: silver;
+.users-tabs-btn {
+  // background-color: silver;
+  padding: 0;
+  width: 100%;
+}
+
+.users-tabs-btn ul {
+  padding: 0;
+  width: 100%;
+}
+
+.users-tabs-btn li {
+  width: 500px;
+  background-color: #EEEEEE;
+  display: table-cell;
+  display: inline-block;
+  font-size: 20px;
 }
 
 .follow a {
@@ -120,10 +144,14 @@
 }
 
 .back-image {
-  background-color: lime;
-  width: 100%;
-  height: 500px;
+  // background-color: lime;
+  width: 60%;
+  height: 800px;
   background-size: cover;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow:  0 0 10px white;
+
 
 }
 

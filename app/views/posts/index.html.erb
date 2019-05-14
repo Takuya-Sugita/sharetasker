@@ -1,7 +1,57 @@
 <div class="posts-back">
   <div class="posts-box">
-    <% @posts.each do |post| %>
 
+    <%= search_form_for @search, url:posts_index_path do |f| %>
+      <div class="form-group">
+        <div class="search-box">
+          <%= f.label :name_cont, "タイトルで検索" %>
+        <%= f.text_field :title_cont, class: "form-control" %>
+      </div>
+      </div>
+      <div class="actions"><%= f.submit "検索" %></div>
+    <% end %>
+
+    <% if @re_posts.any? %>
+      <% @re_posts.each do |re_post| %>
+
+        <div class="post">
+          <div class="post-user">
+            <div class="post-user-image">
+              <%= link_to("/users/#{re_post.user.id}") do %>
+                <img src="<%= "/user_images/#{re_post.user.image_name}" %>">
+              <% end %>
+            </div>
+            <div class="post-user-name">
+              <%= re_post.user.name %>
+            </div>
+          </div>
+
+          <%= link_to("/posts/#{re_post.id}") do %>
+          <div class="posts-index-title">
+            <%= re_post.title %>
+          </div>
+
+          <div class="posts-index-content">
+            <%= re_post.content %><br>
+          </div>
+          <% end %>
+        </div>
+
+     <% end %>
+
+
+    <% end %>
+
+    <% if @re_posts.nil? %>
+      <ul class="posts">
+        <p>該当TASKはありませんでした</p>
+      </ul>
+    <% end %>
+
+<hr>
+
+    <% @posts.each do |post| %>
+    <div class="post">
       <%= link_to("/users/#{post.user.id}") do %>
       <div class="post-user">
         <div class="post-user-image">
@@ -19,10 +69,10 @@
         </div>
 
         <div class="posts-index-content">
-          <p>概要：</p><%= post.content %><br>
+          <%= post.content %><br>
 
         </div>
-        <%= post.id %>
+      </div>
     <% end %>
   </div>
 </div>
