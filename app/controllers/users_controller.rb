@@ -14,38 +14,39 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @posts = @user.posts.order(created_at: :desc)
   end
 
   def new
     @user = User.new
   end
 
-  def create
-    @user = User.new(
-      name: params[:name],
-      email: params[:email],
-      password: params[:password],
-      password_confirmation: params[:password_confirmation],
-      image_name: "default_user.png",
-      back_image: "default-b.png"
-    )
-
-
-    if @user.save
-      session[:user_id] = @user.id
-      flash[:notice] = "ユーザー登録しました"
-      redirect_to("/users/#{@user.id}")
-    else
-      render("users/new")
-    end
-  end
+  # def create
+  #   @user = User.new(
+  #     name: params[:name],
+  #     email: params[:email],
+  #     password: params[:password],
+  #     password_confirmation: params[:password_confirmation],
+  #     image_name: "default_user.png",
+  #     back_image: "default-b.png"
+  #   )
+  #
+  #
+  #   if @user.save
+  #     session[:user_id] = @user.id
+  #     flash[:notice] = "ユーザー登録しました"
+  #     redirect_to("/users/#{@user.id}")
+  #   else
+  #     render("users/new")
+  #   end
+  # end
 
   def edit
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(id:params[:id])
   end
 
   def update
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(id:params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
 
@@ -57,8 +58,8 @@ class UsersController < ApplicationController
 
     if params[:bimage]
       @user.back_image = "#{@user.id}.jpg"
-      image = params[:bimage]
-      File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/back_images/#{@user.back_image}", image.read)
+      bimage = params[:bimage]
+      File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/back_images/#{@user.back_image}", bimage.read)
     end
 
     if @user.save
@@ -117,8 +118,5 @@ class UsersController < ApplicationController
     @search = User.ransack(params[:q])
     @users = @search.result(distinct: true)
   end
-
-
-
 
 end

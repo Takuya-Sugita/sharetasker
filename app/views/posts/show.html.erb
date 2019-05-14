@@ -147,8 +147,8 @@
 
     <h1>このタスクに挑戦中のユーザー</h1>
 
+    <div class="challenging-user-box">
     <% @liked_users.each do |liked_user| %>
-        <div class="challenging-user-box">
           <div class="challenging-user">
             <%=  link_to("/users/#{liked_user.id}") do %>
               <div class="user_image">
@@ -156,8 +156,8 @@
               </div>
             <% end %>
           </div>
-        </div>
     <% end %>
+  </div>
 
 
 

@@ -29,11 +29,16 @@ class PostsController < ApplicationController
       user_id: current_user.id,
      )
 
-    if params[:pimage]
-      @newpost.post_image = "#{@newpost.id}.jpg"
-      image = params[:pimage]
-      File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/post_images/#{@newpost.post_image}", image.read)
-    end
+     unless @newpost.save
+       render("posts/new")
+     end 
+
+     if params[:pimage]
+       @newpost.post_image = "#{@newpost.id}.jpg"
+       image = params[:pimage]
+       File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/post_images/#{@newpost.post_image}", image.read)
+     end
+
 
     if @newpost.save
       flash[:notice] = "TASKを作成！！さぁ、チャレンジしよう！！"
@@ -41,6 +46,8 @@ class PostsController < ApplicationController
     else
       render("posts/new")
     end
+
+
   end
 
   def edit
