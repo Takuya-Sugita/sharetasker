@@ -7,14 +7,19 @@
           <%= f.label :name_cont, "タイトルで検索" %>
         <%= f.text_field :title_cont, class: "form-control" %>
       </div>
-      </div>
       <div class="actions"><%= f.submit "検索" %></div>
+      </div>
     <% end %>
 
     <% if @re_posts.any? %>
       <% @re_posts.each do |re_post| %>
 
         <div class="post">
+
+          <div class="posts-index-date">
+            <%= re_post.created_at %>
+          </div>
+
           <div class="post-user">
             <div class="post-user-image">
               <%= link_to("/users/#{re_post.user.id}") do %>

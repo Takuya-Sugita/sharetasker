@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     end
 
     if params[:bimage]
-      @user.back_image = "b#{@user.id}.jpg"
+      @user.back_image = "#{@user.id}.jpg"
       image = params[:bimage]
       File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/back_images/#{@user.back_image}", image.read)
     end

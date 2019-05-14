@@ -86,15 +86,37 @@ img {
 
 .top-header {
   width: 100%;
-  height: 600px;
-  background-image: url('town.png');
+  height: 800px;
+  background-size: cover;
+  background-image: url('study.jpg');
+  padding-top: 450px;
+  padding-left: 100px;
+}
+
+.app-message {
+  font-size: 50px;
+  margin: 0;
+}
+
+.app-message h1 {
+  margin: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #222222;
+  display: block;
 }
 
 .main-back {
- padding-top: 150px;
+ padding-top: 60px;
  width: 100%;
  background-color: #FFFFEE;
  height: 2000px;
+}
+
+.explain-sharetasker {
+  width: 100%;
+  height: 800px;
+  background-size: cover;
+  background-image: url('sharetasker.png');
 }
 
 .form {
@@ -109,6 +131,10 @@ img {
 .form p {
   font-size: 30px;
 
+}
+
+.form-error {
+  color: red;
 }
 
 .form-heading  {

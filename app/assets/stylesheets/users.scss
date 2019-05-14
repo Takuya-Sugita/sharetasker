@@ -9,9 +9,20 @@
 
 .user-search {
   width: 80%;
-  background-color: #E6FFE9;
   margin-left: auto;
   margin-right: auto;
+}
+
+.user-search-form {
+  width: 30%;
+  height: 40px;
+  padding-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border: solid 1px silver;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .image-back {
@@ -27,7 +38,7 @@
   background-size: cover;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 20%;
+  border-radius: 50%;
 }
 
 .user_image img {
@@ -50,7 +61,7 @@
 
 .users-box {
   padding: 20px 30px;
-  background-color: white;
+  // background-color: white;
   overflow: hidden;
   box-shadow: 0 0px 0px #c1ced7;
   text-align: center;
@@ -59,7 +70,7 @@
   height: 150px;
   margin-left: auto;
   margin-right: auto;
-  margin-top:50px;
+  margin-top:20px;
 }
 
 .users-indi-box {
@@ -77,43 +88,65 @@
 }
 
 .users-form {
-  width: 1000px;
-  height: 800px;
-  margin: 0 auto;
+  width: 60%;
+  height: 700px;
+  margin-left: auto;
+  margin-right: auto;
   background-color:white;
-  border: solid 2px black;
-  text-align: center;
+  border: solid 1px silver;
+  border-radius: 5px;
+  text-align: left;
+  padding: 80px;
+  overflow: hidden;
 }
 
 .users-form p {
   font-size: 30px;
+  margin: 0;
 
 }
 
 
 .users-form input {
-  margin: 30px 150px;
+  margin: 30px;
   width: 500px;
-  height: 50px;
-  border: 2px solid black;
+  height: 30px;
+  border: 1px solid silver;
   padding: 10px;
   color: black;
-  font-size: 30px;
+  font-size: 20px;
   letter-spacing: 2px;
-  border-radius: 2px;
+  border-radius: 5px;
 
 }
 
+.edit-image input {
+  margin: 30px;
+  width: 500px;
+  height: 30px;
+  padding: 10px;
+  color: black;
+  font-size: 20px;
+  letter-spacing: 2px;
+  border: none;
+}
+
+.user-edit-btn {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 
 .users-form input[type="submit"] {
   background-color: #3ecdc6;
   color: white;
   font-weight: 300;
   width: 120px;
+  height: 50px;
   border-radius: 2px;
   margin-top: 8px;
   margin-bottom: 0;
-  float: right;
 }
 
 .users-tabs-btn {
@@ -145,11 +178,12 @@
 
 .back-image {
   // background-color: lime;
-  width: 60%;
-  height: 800px;
+  width: 40%;
+  height: 400px;
   background-size: cover;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 50px;
   box-shadow:  0 0 10px white;
 
 
@@ -169,4 +203,33 @@
   text-align: center;
   vertical-align: middle;
 
+}
+
+// ---------------------------users/login/signin/------------------------
+.login-form {
+  width: 40%;
+  background-color: white;
+  border: solid 1px silver;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  padding: 20px;
+
+}
+
+.login-form input {
+}
+
+.signup-btn {
+  margin :10px;
+  text-align: center;
+}
+
+.login-tabs {
+  border: solid 1px aqua;
+}
+
+.actions {
+  margin: 10px;
 }

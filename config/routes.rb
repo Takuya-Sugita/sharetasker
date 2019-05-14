@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     get "login", :to => "users/sessions#new"
     post "login" => "users/sessions#create"
     post "logout", :to => "users/sessions#destroy"
+    get "forgetpassword" => "users/passwords#new"
+    get "reconfirm" => "users/confirmations#new"
+    get 'password/edit' => "users/passwords#edit"
   end
 
   post 'likes/:post_id/create' => 'likes#create'

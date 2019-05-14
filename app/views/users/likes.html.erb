@@ -36,7 +36,7 @@
     <div class="users-tabs-btn">
     <ul class="users-tabs">
       <li>
-        <%= link_to("自身の投稿", "/users/#{@user.id}") %>
+        <%= link_to("投稿TASK", "/users/#{@user.id}") %>
       </li>
       <li>
         <%= link_to("チャレンジ中のTASK", "/users/#{@user.id}/likes") %>
@@ -47,6 +47,11 @@
     <% @likes.each do |like|  %>
       <% post = Post.find_by(id: like.post_id) %>
       <div class="post">
+
+        <div class="posts-index-date">
+          <%= like.post.created_at %>
+        </div>
+
       <div class="post-user">
         <div class="post-user-image">
           <%= link_to("/users/#{post.user.id}") do %>

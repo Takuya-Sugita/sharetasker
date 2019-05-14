@@ -1,7 +1,7 @@
 <div class="users-back">
 
   <div class="back-image">
-    <img src="<%= "/back_images/#{@user.back_image}" %>">
+    <img src="<%= "/back_images/#{@user.back_image}" %>" alt="noimage">
   </div>
 
   <div class="users-indi-box">
@@ -47,6 +47,11 @@
 
     <% @user.posts.each do |post| %>
     <div class="post">
+
+      <div class="posts-index-date">
+        <%= post.created_at %>
+      </div>
+
         <div class="post-user">
           <div class="post-user-image">
             <%= link_to("/users/#{post.user.id}") do %>

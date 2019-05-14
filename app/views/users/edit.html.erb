@@ -1,6 +1,6 @@
 <div class="users-back">
-  <div class="users-ex-message">
-    <p>ユーザーを編集<p>
+  <div class="form-heading">
+    <p>ユーザー編集</p>
   </div>
 
   <div class="users-form">
@@ -16,16 +16,22 @@
       <p>ユーザーネーム</p>
       <input name="name" type="text" value="<%= @user.name %>">
 
-      <p>背景画像</p>
-      <input name="bimage" type="file">
-
-      <p>アイコン画像</p>
-      <input name="image" type="file">
-
       <p>E-mail</p>
       <input name="email" type="email" value="<%= @user.email %>">
 
-      <input type="submit" value="保存">
+      <p>背景画像</p>
+      <div class="edit-image">
+        <input name="bimage" type="file">
+      </div>
+
+      <p>アイコン画像</p>
+      <div class="edit-image">
+        <input name="image" type="file">
+      </div>
+
+      <div class="user-edit-btn">
+        <input type="submit" value="保存">
+      </div>
 
   </div>
 <% end %>
