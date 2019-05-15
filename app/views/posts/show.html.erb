@@ -6,6 +6,7 @@
 
     <%= link_to("/users/#{@user.id}") do %>
      <div class="post">
+
          <% if @post.user_id == current_user.id %>
            <%= link_to("/posts/#{@post.id}/destroy", {method: "post"}) do %>
            <div class="destroy-btn">
@@ -112,6 +113,22 @@
 
   </div>
 
+
+  <h1>このタスクに挑戦中のユーザー</h1>
+
+  <div class="challenging-user-box">
+    <% @liked_users.each do |liked_user| %>
+    <div class="challenging-user">
+      <%=  link_to("/users/#{liked_user.id}") do %>
+      <div class="user_image">
+        <img src="<%= "/user_images/#{liked_user.image_name}"%>" alt="defa">
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+
+  
     <h1>コメント</h1>
 
 
@@ -146,20 +163,6 @@
     <% end %>
 
 
-
-    <h1>このタスクに挑戦中のユーザー</h1>
-
-    <div class="challenging-user-box">
-    <% @liked_users.each do |liked_user| %>
-          <div class="challenging-user">
-            <%=  link_to("/users/#{liked_user.id}") do %>
-              <div class="user_image">
-                <img src="<%= "/user_images/#{liked_user.image_name}"%>" alt="defa">
-              </div>
-            <% end %>
-          </div>
-    <% end %>
-  </div>
 
 
 

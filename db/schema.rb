@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_15_125803) do
+ActiveRecord::Schema.define(version: 2019_05_15_215958) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment", null: false
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2019_05_15_125803) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "post_image"
-    t.text "limit"
     t.text "place"
+    t.datetime "limitday"
   end
 
   create_table "relationships", force: :cascade do |t|

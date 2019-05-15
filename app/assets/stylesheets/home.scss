@@ -23,6 +23,45 @@ a {
 img {
 
 }
+// ---------------------------------bootstrap--------------------------------
+
+
+.nav-custom {
+  background-color: #CC0000;
+}
+
+.nav-item {
+  margin-left: 5px;
+  color: white;
+}
+
+.slide-back {
+  background-color: silver;
+}
+
+.carousel-item {
+  width: 80%;
+  background-size: cover;
+  height: 800px;
+
+}
+
+.nav-link a{
+  color: black;
+}
+
+.nav-position-custom {
+  float: right;
+}
+
+.link-position {
+  text-align: right;
+}
+
+.nav-ul-position {
+  text-align: right;
+}
+// ---------------------------------------------------------
 
 .header {
   width: 100%;
@@ -106,7 +145,7 @@ img {
 }
 
 .main-back {
- padding-top: 60px;
+ padding-top: 30px;
  width: 100%;
  background-color: #FFFFEE;
  height: 3000px;
@@ -185,19 +224,12 @@ img {
   float: right;
 }
 
-.posts-box {
-  max-width: 600px;
-  margin: 60px auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  clear: both;
-}
+
 
 .flash {
   color: white;
   background: rgb(251, 170, 88);
   text-align: center;
-  position: fixed;
   top: 60px;
   height: 40px;
   width: 100%;

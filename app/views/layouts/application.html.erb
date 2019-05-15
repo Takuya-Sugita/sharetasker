@@ -9,54 +9,101 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:300 rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
   </head>
 
   <body>
-    <div class="header">
+
+<!-- ------------------------------------------------------------- -->
+      <nav class="navbar navbar-expand-lg navbar-light nav-custom">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
       <%= link_to '/' do %>
-        <div class="header-logo">
-          <h2>Sharetasker</h2>
+        <div class="navbar-brand ">
+          Sharetasker
         </div>
       <% end %>
 
-
-      <div class="header-list">
-        <ul>
+        <div class="collapse navbar-collapse link-position" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav-ul-position">
           <% if current_user %>
-            <li>
-              <%= link_to(current_user.name, "/users/#{current_user.id}") %>
+            <li class="nav-item active">
+              <span class="nav-link">
+                <%= link_to( "/users/#{current_user.id}") do %>
+                  <% fa_icon("id-card 2x") %>
+                <% end %>
+              </span>
             </li>
 
-            <li>
-              <%= link_to("フォローユーザー", "/users/follows")%>
+            <li class="nav-item active">
+              <span class="nav-link">
+                <%= link_to( '/posts/index') do %>
+                  <%= fa_icon("list 2x")%>
+                <% end %>
+              </span>
             </li>
 
-            <li>
-              <%= link_to("TASK一覧", '/posts/index') %>
+            <li class="nav-item active">
+              <span class="nav-link">
+                <%= link_to('/posts/new') do %>
+                  <%= fa_icon("edit 2x") %>
+                <% end %>
+              </span>
             </li>
-            <li>
-              <%= link_to("TASK作成", '/posts/new') %>
+
+            <li class="nav-item active">
+              <span class="nav-link">
+                <%= link_to( "/users/follows") do %>
+                  <%= fa_icon("address-book 2x") %>
+                <% end %>
+              </span>
             </li>
-            <li>
-              <%= link_to("ユーザー一覧", "/users/index")%>
+
+            <li class="nav-item active">
+              <span class="nav-link">
+                <%= link_to("/users/index") do %>
+                  <%= fa_icon("user-plus 2x") %>
+                <% end %>
+              </span>
             </li>
-            <li>
-              <%= link_to("ログアウト", "/logout", {method: :post}) %>
+
+            <li class="nav-item active">
+              <span class="nav-link">
+                <%= link_to( "/logout", {method: :post}) do %>
+                  <%= fa_icon("arrow-right 2x") %>
+                <% end %>
+              </span>
             </li>
 
           <% else %>
 
-            <li>
-              <%= link_to("ユーザー登録", "/signup") %>
+            <li class="nav-item active">
+              <span class="nav-link">
+                <%= link_to("ユーザー登録", "/signup") %>
+              </span>
             </li>
-            <li>
-              <%= link_to("ログイン", "/login")%>
+
+            <li class="nav-item active">
+              <span class="nav-link"><%= link_to("ログイン", "/login")%></span>
             </li>
 
           <% end %>
         </ul>
-      </div>
-    </div>
+
+        </div>
+
+      </nav>
+
+
 
     <% if flash[:notice] %>
       <div class="flash">

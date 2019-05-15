@@ -27,6 +27,12 @@ gem 'bcrypt', '~> 3.1.11'
 gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
 gem 'ransack'
 gem 'devise'
+
+gem 'font-awesome-rails'
+
+gem 'jquery-ui-rails'
+
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

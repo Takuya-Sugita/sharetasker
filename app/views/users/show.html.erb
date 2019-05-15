@@ -58,7 +58,8 @@
 
       <div class="posts-index-date">
         <%= post.created_at.strftime("%Y-%m-%d %H:%M") %>
-        <p>期限:<%= post.limit %></p>
+        <p>期限:<%= post.limitday %></p>
+        <p>場所:<%= post.place %></p>
       </div>
 
         <div class="post-user-show">

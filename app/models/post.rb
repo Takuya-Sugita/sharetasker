@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  content    :text
-#  limit      :text
+#  limitday   :datetime
 #  place      :text
 #  post_image :string
 #  title      :text

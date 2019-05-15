@@ -19,11 +19,17 @@
       <p>概要  <span>(難易度も書き込んでください ※300字以内)</span></p>
       <textarea name="content" ><%= @post.content %></textarea>
 
-      <p>期限<p>
-      <input type="text" name="limit" value="<%= @post.limit %>">
+      <p>期限</p>
+      <div class="input-group date" id="datetimepickerDetailTaskDeadline" data-target-input="nearest">
+        <input id="DetailTaskDeadline" type="text" class="form-control datetimepicker-input" data-target="#datetimepickerDetailTaskDeadline"/>
+        <div class="input-group-append" data-target="#datetimepickerDetailTaskDeadline" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i>
+          </div>
+        </div>
+      </div>
 
       <p>場所<span>（任意）</span></p>
-      <input type="text" name="place" value="指定しない">
+      <input type="text" name="place" value="指定しない" >
 
       <div class="pimage">
       <p>画像<span>（任意）</span></p>
@@ -39,3 +45,11 @@
   <% end %>
 
 </div>
+
+<script>
+  $('#datetimepickerDetailTaskDeadline').datetimepicker(
+    {
+      format: 'MM/DD/YYYY HH:mm',
+    }
+  );
+</script>

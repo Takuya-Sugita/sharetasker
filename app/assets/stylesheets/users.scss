@@ -4,6 +4,10 @@
  background-color: #FFFFEE;
 }
 
+.users-back a {
+  color: black;
+}
+
 .user-search {
   width: 80%;
   margin-left: auto;
@@ -11,8 +15,8 @@
 }
 
 .user-search-form {
-  width: 30%;
-  height: 40px;
+  width: 40%;
+  height: 120px;
   padding-top: 0px;
   margin-left: auto;
   margin-right: auto;
@@ -20,6 +24,12 @@
   border: solid 1px silver;
   border-radius: 5px;
   text-align: center;
+}
+
+.user-search-form input {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .image-back {
@@ -76,7 +86,7 @@
   text-align: center;
   font-size: 30px;
   width: 400px;
-  height: 150px;
+  height: 200px;
   margin-left: auto;
   margin-right: auto;
   margin-top:20px;
