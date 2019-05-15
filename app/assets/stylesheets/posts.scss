@@ -1,6 +1,9 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// ---------------------------------posts/index----------------------------
+
 .posts-back {
  padding-top: 80px;
  width: 100%;
@@ -62,6 +65,8 @@
 .post-user {
   background-color: white;
   text-align: left;
+  width:30%;
+  display: inline-block;
 }
 
 .post-user-image {
@@ -72,6 +77,15 @@
   margin-left: 50px;
   margin-top: 50px;
 
+}
+
+.post-index-image {
+  width:60%;
+  display: inline-block;
+}
+
+.post-index-image img {
+  width:100%;
 }
 
 .post-user-image img {
@@ -96,9 +110,10 @@
 
 .posts-form {
   width: 60%;
-  height: 700px;
+  height: 850px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 50px;
   background-color: white;
   padding: 20px;
 }

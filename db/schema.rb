@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_15_054249) do
+ActiveRecord::Schema.define(version: 2019_05_15_125803) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment", null: false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2019_05_15_054249) do
     t.integer "user_id"
     t.string "post_image"
     t.text "limit"
+    t.text "place"
   end
 
   create_table "relationships", force: :cascade do |t|

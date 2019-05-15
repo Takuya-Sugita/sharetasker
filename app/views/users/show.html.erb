@@ -1,11 +1,13 @@
 <div class="users-back">
-  <% if @user.back_image %>
+
+  <div class="users-indi-box">
+
+    <% if @user.back_image %>
     <div class="back-image">
       <img src="<%= "/back_images/#{@user.back_image}" %>" alt="noimage">
     </div>
-  <% end %>
+    <% end %>
 
-  <div class="users-indi-box">
     <div class="image-back">
       <div class="user_image">
         <img src="<%= "/user_images/#{@user.image_name}"%>" alt="defa">
@@ -22,15 +24,21 @@
     <% end %>
 
     <% if current_user.id != @user.id %>
-      <% if @user.followed_by?(current_user) %>
-        <div class="follow">
-          <%= link_to("フォロー済", "/relationships/#{@user.id}/destroy", {method: "post"})%>
-        </div>
-      <% else %>
-        <div class="unfollow">
-          <%= link_to("フォローする", "/relationships/#{@user.id}/create", {method: "post"})%>
-        </div>
-      <% end %>
+      <div class="follow-switch-btn">
+        <% if @user.followed_by?(current_user) %>
+          <%= link_to("/relationships/#{@user.id}/destroy", {method: "post"}) do %>
+            <div class="follow">
+              <p>フォロー中</p>
+            </div>
+          <% end %>
+        <% else %>
+          <%= link_to("/relationships/#{@user.id}/create", {method: "post"}) do %>
+            <div class="unfollow">
+              <p>フォローする</p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
 
 
@@ -53,7 +61,7 @@
         <p>期限:<%= post.limit %></p>
       </div>
 
-        <div class="post-user">
+        <div class="post-user-show">
           <div class="post-user-image">
             <%= link_to("/users/#{post.user.id}") do %>
               <img src="<%= "/user_images/#{post.user.image_name}" %>">
@@ -63,6 +71,12 @@
             <%= post.user.name %>
           </div>
         </div>
+
+        <% if post.post_image %>
+          <div class="post-index-image">
+            <img src="<%= "/post_images/#{post.post_image}" %>">
+          </div>
+        <% end %>
 
         <%= link_to("/posts/#{post.id}") do %>
       <div class="posts-index-title">

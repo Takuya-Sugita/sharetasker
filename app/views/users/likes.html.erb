@@ -1,10 +1,14 @@
 <div class="users-back">
 
-  <div class="back-image">
-    <img src="<%= "/back_images/#{@user.back_image}" %>">
-  </div>
 
   <div class="users-indi-box">
+
+    <% if @user.back_image %>
+    <div class="back-image">
+      <img src="<%= "/back_images/#{@user.back_image}" %>" alt="noimage">
+    </div>
+    <% end %>
+
     <div class="image-back">
       <div class="user_image">
         <img src="<%= "/user_images/#{@user.image_name}"%>" alt="defa">
@@ -12,8 +16,7 @@
     </div>
     <%= @user.name %>
     <br>
-    <%= @user.email %>
-    <br>
+
 
     <% if @user.id == current_user.id %>
       <div class="profile-edit-btn">
@@ -48,10 +51,12 @@
       <div class="post">
 
             <div class="posts-index-date">
-             <%= post.created_at %>
+              <%= post.created_at.strftime("%Y-%m-%d %H:%M") %>
+              <p>期限:<%= post.limit %></p>
+             <p>場所:<%= post.place %></p>
             </div>
 
-        <div class="post-user">
+        <div class="post-user-show">
           <div class="post-user-image">
             <%= link_to("/users/#{post.user.id}") do %>
               <img src="<%= "/user_images/#{post.user.image_name}" %>">
@@ -62,7 +67,14 @@
           </div>
         </div>
 
-      <%= link_to("/posts/#{post.id}") do %>
+        <% if post.post_image %>
+          <div class="post-index-image">
+            <img src="<%= "/post_images/#{post.post_image}" %>">
+          </div>
+        <% end %>
+
+
+        <%= link_to("/posts/#{post.id}") do %>
         <div class="posts-index-title">
           <%= post.title %>
         </div>
@@ -71,8 +83,8 @@
           <%= post.content %><br>
         </div>
 
-      <% end %>
 
+        <% end %>
       </div>
     <% end %>
 

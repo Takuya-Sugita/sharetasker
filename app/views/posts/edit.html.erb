@@ -17,12 +17,15 @@
 
       <p>タイトル</p>
       <input type="text" name="title" value="<%= @post.title %>">
-      
+
       <p>概要  <span>(難易度や場所も書き込んでください)</span></p>
       <textarea name="content" ><%= @post.content %></textarea>
 
       <p>期限<p>
       <input type="text" name="limit" value="<%= @post.limit %>">
+
+      <p>場所<span>（任意）</span></p>
+      <input type="text" name="place" value="<%= @post.place %>">
 
       <div class="pimage">
       <p>画像</p>

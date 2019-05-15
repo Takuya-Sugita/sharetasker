@@ -175,12 +175,58 @@
   font-size: 20px;
 }
 
-.follow a {
-  color: silver;
+.follow-switch-btn {
+  text-align: center;
+  width: 200px;
+  // background-color: blue;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.unfollow a {
+
+.follow {
+  color: silver;
+  width: 200px;
+  height:25px;
+  text-decoration: none;
+  background: #CC0000;/*ボタン色*/
+  color: white;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+
+}
+
+.follow:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+
+.follow p {
+  font-size: 15px;
   color: orange;
+}
+
+.unfollow {
+  color: orange;
+  width: 200px;
+  height:25px;
+  text-decoration: none;
+  background: #CC0000;/*ボタン色*/
+  color: white;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+}
+
+.unfollow p {
+  font-size: 15px;
+
+}
+
+.unfollow:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
 }
 
 .back-image {
@@ -191,6 +237,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
+  margin-bottom: 50px;
   box-shadow:  0 0 10px white;
 
 

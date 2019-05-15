@@ -5,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  content    :text
 #  limit      :text
+#  place      :text
 #  post_image :string
 #  title      :text
 #  created_at :datetime         not null

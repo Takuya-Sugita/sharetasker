@@ -27,7 +27,8 @@ class PostsController < ApplicationController
       title: params[:title],
       content: params[:content],
       user_id: current_user.id,
-      limit: params[:limit]
+      limit: params[:limit],
+      place: params[:place]
      )
 
      unless @newpost.save
@@ -60,6 +61,7 @@ class PostsController < ApplicationController
     @post.title = params[:title]
     @post.content = params[:content]
     @post.limit = params[:limit]
+    @post.place = params[:place]
 
     if params[:pimage]
       @post.post_image = "#{SecureRandom.uuid}.jpg"

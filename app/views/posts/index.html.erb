@@ -19,7 +19,10 @@
           <div class="posts-index-date">
             <%= re_post.created_at.strftime("%Y-%m-%d %H:%M") %>
             <p>期限:<%= re_post.limit %></p>
+            <p>場所:<%= re_post.place %></p>
           </div>
+
+
 
           <div class="post-user">
             <div class="post-user-image">
@@ -27,10 +30,18 @@
                 <img src="<%= "/user_images/#{re_post.user.image_name}" %>">
               <% end %>
             </div>
+
             <div class="post-user-name">
               <%= re_post.user.name %>
             </div>
           </div>
+
+
+          <% if re_post.post_image %>
+            <div class="post-index-image">
+              <img src="<%= "/post_images/#{re_post.post_image}" %>">
+            </div>
+          <% end %>
 
           <%= link_to("/posts/#{re_post.id}") do %>
           <div class="posts-index-title">

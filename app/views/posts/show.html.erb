@@ -17,7 +17,7 @@
       <div class="post-show-user">
         <%= link_to("/users/#{@user.id}") do %>
         <div class="post-user-image">
-        <img src="<%= "/user_images/#{@user.image_name}" %>">
+          <img src="<%= "/user_images/#{@user.image_name}" %>">
         </div>
         <%= @user.name %>
         <% end %>
@@ -27,6 +27,7 @@
     <div class="post-created-date">
       <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %><br>
       <p>期限:<%= @post.limit %></p>
+      <p>場所:<%= @post.place %></p>
     </div>
 
     <div class="posts-show-title">
