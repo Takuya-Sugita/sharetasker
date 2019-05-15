@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
   wrap_parameters :user, include: [:name, :password, :password_confirmation]
 
+  require 'securerandom'
+
   def index
     @users = User.all
     @search = User.ransack(params[:q])
@@ -51,13 +53,13 @@ class UsersController < ApplicationController
     @user.email = params[:email]
 
     if params[:image]
-      @user.image_name = "#{@user.id}.jpg"
+      @user.image_name = "#{SecureRandom.uuid}.jpg"
       image = params[:image]
       File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/user_images/#{@user.image_name}", image.read)
     end
 
     if params[:bimage]
-      @user.back_image = "#{@user.id}.jpg"
+      @user.back_image = "#{SecureRandom.uuid}.jpg"
       bimage = params[:bimage]
       File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/back_images/#{@user.back_image}", bimage.read)
     end
@@ -95,7 +97,7 @@ class UsersController < ApplicationController
 
   def likes
     @user = User.find_by(id: params[:id])
-    @likes = Like.where(user_id: @user.id)
+    # @likes = Like.where(user_id: @user.id)
   end
 
   def ensure_correct_user

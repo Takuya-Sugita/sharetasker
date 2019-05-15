@@ -36,6 +36,7 @@ class User < ApplicationRecord
       attr_accessor :login
 
       has_many :likes
+      has_many :liked_posts, through: :likes, source: :post
       has_many :posts
       has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
       has_many :followings, through: :active_relationships, source: :follower
@@ -54,5 +55,8 @@ class User < ApplicationRecord
         passive_relationships.find_by(following_id: user.id).present?
       end
 
+      def already_liked?(post)
+        self.likes.exists?(post_id: post.id)
+      end 
 
 end

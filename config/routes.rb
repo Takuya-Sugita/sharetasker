@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  devise_for :users
+  devise_for :users, :controllers => {:password => "passwords"}
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
@@ -14,8 +14,9 @@ Rails.application.routes.draw do
     post "login" => "users/sessions#create"
     post "logout", :to => "users/sessions#destroy"
     get "forgetpassword" => "users/passwords#new"
+    post  "repassword" => "users/passwords#create"
     get "reconfirm" => "users/confirmations#new"
-    get 'password/edit' => "users/passwords#edit"
+    get 'edit_user_passwords' => "users/passwords#edit"
   end
 
   post 'likes/:post_id/create' => 'likes#create'
@@ -33,7 +34,7 @@ Rails.application.routes.draw do
   # post 'users/create' => 'users/registrations#create'
   get 'users/:id/edit' => 'users#edit'
   post 'users/:id/update' => 'users#update'
-  get 'users/:id/likes' => "users#likes"
+  get 'users/:id/likes' => 'users#likes'
 
   # get 'users/:id/followers' => 'users#followers'
 

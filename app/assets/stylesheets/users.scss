@@ -1,10 +1,7 @@
 .users-back {
  padding-top: 60px;
  width: 100%;
- // height: -webkit-fill-available;
- height: 3000px;
  background-color: #FFFFEE;
-
 }
 
 .user-search {
@@ -88,12 +85,10 @@
 .users-indi-box {
   padding: 20px 30px;
   background-color: white;
-  overflow: hidden;
   box-shadow: 0 0px 0px #c1ced7;
   text-align: center;
   font-size: 30px;
   width: 60%;
-  height: -webkit-fill-available;
   margin-left: auto;
   margin-right: auto;
   margin-top:50px;
@@ -190,8 +185,8 @@
 
 .back-image {
   // background-color: lime;
-  width: 40%;
-  height: 400px;
+  width: 100%;
+  height: 600px;
   background-size: cover;
   margin-left: auto;
   margin-right: auto;

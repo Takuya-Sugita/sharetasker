@@ -4,6 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  content    :text
+#  limit      :text
 #  post_image :string
 #  title      :text
 #  created_at :datetime         not null
@@ -20,6 +21,7 @@ class Post < ApplicationRecord
   validates :title, {presence: true, length: {maximum: 20}}
   validates :content, {presence: true, length: {maximum: 300}}
   validates :user_id, {presence: true}
+  validates :limit, {presence: true}
 
   def user
     return User.find_by(id: self.user_id)

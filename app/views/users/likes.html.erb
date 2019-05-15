@@ -44,35 +44,35 @@
     </ul>
     </div>
 
-    <% @likes.each do |like|  %>
-      <% post = Post.find_by(id: like.post_id) %>
+    <% @user.liked_posts.each do |post| %>
       <div class="post">
 
-        <div class="posts-index-date">
-          <%= like.post.created_at %>
-        </div>
+            <div class="posts-index-date">
+             <%= post.created_at %>
+            </div>
 
-      <div class="post-user">
-        <div class="post-user-image">
-          <%= link_to("/users/#{post.user.id}") do %>
-            <img src="<%= "/user_images/#{post.user.image_name}" %>">
-          <% end %>
+        <div class="post-user">
+          <div class="post-user-image">
+            <%= link_to("/users/#{post.user.id}") do %>
+              <img src="<%= "/user_images/#{post.user.image_name}" %>">
+            <% end %>
+          </div>
+          <div class="post-user-name">
+            <%= post.user.name %>
+          </div>
         </div>
-        <div class="post-user-name">
-          <%= post.user.name %>
-        </div>
-      </div>
 
       <%= link_to("/posts/#{post.id}") do %>
-      <div class="posts-index-title">
-        <%= post.title %>
-      </div>
+        <div class="posts-index-title">
+          <%= post.title %>
+        </div>
 
-      <div class="posts-index-content">
-        <%= post.content %><br>
-      </div>
+        <div class="posts-index-content">
+          <%= post.content %><br>
+        </div>
 
       <% end %>
+
       </div>
     <% end %>
 

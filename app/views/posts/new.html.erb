@@ -6,7 +6,6 @@
   <%= form_tag("/posts/create", {multipart: true}) do %>
   <div class="posts-form">
     <div class="form-body">
-      <p>タイトル</p>
 
       <% @post.errors.full_messages.each do |message| %>
         <div class="form-error">
@@ -14,9 +13,14 @@
         </div>
       <% end %>
 
+      <p>タイトル</p>
       <input type="text" name="title" value="<%= @post.title %>">
-      <p>概要  -難易度や期限含む-</p>
+
+      <p>概要  <span>(難易度や場所も書き込んでください)</span></p>
       <textarea name="content" ><%= @post.content %></textarea>
+
+      <p>期限<p>
+      <input type="text" name="limit" value="<%= @post.limit %>">
 
       <div class="pimage">
       <p>画像</p>
@@ -26,7 +30,7 @@
       <div class="post-btn">
         <input type="submit" value="投稿">
       </div>
-      
+
     </div>
   </div>
   <% end %>

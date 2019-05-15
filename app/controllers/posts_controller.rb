@@ -27,14 +27,15 @@ class PostsController < ApplicationController
       title: params[:title],
       content: params[:content],
       user_id: current_user.id,
+      limit: params[:limit]
      )
 
      unless @newpost.save
        render("posts/new")
-     end 
+     end
 
      if params[:pimage]
-       @newpost.post_image = "#{@newpost.id}.jpg"
+       @newpost.post_image = "#{SecureRandom.uuid}.jpg"
        image = params[:pimage]
        File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/post_images/#{@newpost.post_image}", image.read)
      end
@@ -58,9 +59,10 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @post.title = params[:title]
     @post.content = params[:content]
+    @post.limit = params[:limit]
 
     if params[:pimage]
-      @post.post_image = "#{@post.id}.jpg"
+      @post.post_image = "#{SecureRandom.uuid}.jpg"
       image = params[:pimage]
       File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/post_images/#{@post.post_image}", image.read)
     end
