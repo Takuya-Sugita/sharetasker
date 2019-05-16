@@ -71,6 +71,7 @@
   box-shadow: 0 0px 0px #c1ced7;
   border-bottom: solid 1px black;
   font-size: 20px;
+  text-align: center;
 }
 
 .posts-index-date {
@@ -174,8 +175,9 @@
   text-align: center;
 }
 
-.post-btn input{
+.post-btn button{
   width: 100px;
+  height: 50px;
   font-size: 20px;
 }
 

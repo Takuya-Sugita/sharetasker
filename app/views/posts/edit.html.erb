@@ -5,7 +5,7 @@
   <div class="form-heading">
     <p>TASKを編集</p>
   </div>
-  <%= form_tag("/posts/#{@post.id}/update", {multipart: true}) do %>
+  <%= form_tag("/posts/#{@post.id}/update", {multipart: true, name:"send_post"}) do %>
   <div class="posts-form">
     <div class="form-body">
 
@@ -21,8 +21,14 @@
       <p>概要  <span>(難易度や場所も書き込んでください)</span></p>
       <textarea name="content" ><%= @post.content %></textarea>
 
-      <p>場所<span>（任意）</span></p>
-      <input type="text" name="place" value="指定しない" >
+      <p>期限</p>
+      <div class="input-group date" id="datetimepickerDetailTaskDeadline" data-target-input="nearest">
+        <input id="DetailTaskDeadline" name="limitday" type="text" class="form-control datetimepicker-input" data-target="#datetimepickerDetailTaskDeadline" />
+        <div class="input-group-append" data-target="#datetimepickerDetailTaskDeadline" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i>
+          </div>
+        </div>
+      </div>
 
       <p>場所<span>（任意）</span></p>
       <input type="text" name="place" value="<%= @post.place %>">
@@ -33,7 +39,7 @@
       </div>
 
       <div class="post-btn">
-        <input type="submit" value="投稿">
+          <button onclick="make_post()">投稿</button>
       </div>
 
     </div>

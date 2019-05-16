@@ -3,7 +3,7 @@
   <div class="form-heading">
     <p>TASKを新しく作成</p>
   </div>
-  <%= form_tag("/posts/create", {multipart: true}) do %>
+  <%= form_tag("/posts/create", {multipart: true, name:"send_post"}) do %>
   <div class="posts-form">
     <div class="form-body">
 
@@ -21,7 +21,7 @@
 
       <p>期限</p>
       <div class="input-group date" id="datetimepickerDetailTaskDeadline" data-target-input="nearest">
-        <input id="DetailTaskDeadline" type="text" class="form-control datetimepicker-input" data-target="#datetimepickerDetailTaskDeadline"/>
+        <input id="DetailTaskDeadline" name="limitday" type="text" class="form-control datetimepicker-input" data-target="#datetimepickerDetailTaskDeadline" />
         <div class="input-group-append" data-target="#datetimepickerDetailTaskDeadline" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i>
           </div>
@@ -33,11 +33,11 @@
 
       <div class="pimage">
       <p>画像<span>（任意）</span></p>
-      <input name="pimage" type="file">
+      <input name="pimage" type="file" accept="image/png, image/jpeg">
       </div>
 
       <div class="post-btn">
-        <input type="submit" value="投稿">
+        <button onclick="make_post()">投稿</button>
       </div>
 
     </div>
@@ -47,9 +47,15 @@
 </div>
 
 <script>
-  $('#datetimepickerDetailTaskDeadline').datetimepicker(
-    {
-      format: 'MM/DD/YYYY HH:mm',
+  $('#datetimepickerDetailTaskDeadline').datetimepicker({
+    language: 'ja',
+    format: 'MM/DD/YYYY HH:mm'
+  });
+  function make_post() {
+    if(moment($('#DetailTaskDeadline').value(),'MM/DD/YYYY HH:mm').isValid()){
+      $('#DetailTaskDeadline').value() = moment($('#DetailTaskDeadline').value(),'MM/DD/YYYY HH:mm').utc().format();
     }
-  );
+    // document.send_post.submit();
+    console.log(  $('#DetailTaskDeadline').value())
+  }
 </script>

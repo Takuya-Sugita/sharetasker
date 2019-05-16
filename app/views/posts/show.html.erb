@@ -27,7 +27,7 @@
 
     <div class="post-created-date">
       <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %><br>
-      <p>期限:<%= @post.limit %></p>
+      <p>期限:<%= @post.limitday %></p>
       <p>場所:<%= @post.place %></p>
     </div>
 
@@ -105,13 +105,47 @@
         <% end %>
 
         <textarea name="comment" ></textarea><br>
-        <input name="cimage" type="file"><br>
+        <input name="cimage" type="file" accept="image/jpeg, image/png"><br>
         <input type="submit" value="投稿">
       </div>
     </div>
     <% end %>
 
   </div>
+
+
+      <h1>コメント</h1>
+
+
+      <% @comments.each do |comment| %>
+      <div class="comment-body">
+          <%= link_to("/users/#{comment.user_id}") do %>
+            <div class="comment-user-image">
+              <img src="<%= "/user_images/#{comment.user.image_name}"%>">
+            </div>
+          <% end %>
+
+
+          <% if comment.comment_image %>
+            <div class="comment-image">
+              <img src="<%= "/comment_images/#{comment.comment_image}" %>">
+            </div>
+          <% end %>
+
+          <div class="comment-content">
+            <%= comment.comment %>
+          </div>
+
+          <% if current_user.id == comment.user_id %>
+            <%= link_to("/comments/#{comment.id}/destroy", {method: "post"}) do %>
+              <div class="edit-destroy-btn">
+                <p>削</p>
+              </div>
+            <% end %>
+          <% end %>
+
+      </div>
+      <% end %>
 
 
   <h1>このタスクに挑戦中のユーザー</h1>
@@ -128,39 +162,7 @@
     <% end %>
   </div>
 
-  
-    <h1>コメント</h1>
 
-
-    <% @comments.each do |comment| %>
-    <div class="comment-body">
-        <%= link_to("/users/#{comment.user_id}") do %>
-          <div class="comment-user-image">
-            <img src="<%= "/user_images/#{comment.user.image_name}"%>">
-          </div>
-        <% end %>
-
-
-        <% if comment.comment_image %>
-          <div class="comment-image">
-            <img src="<%= "/comment_images/#{comment.comment_image}" %>">
-          </div>
-        <% end %>
-
-        <div class="comment-content">
-          <%= comment.comment %>
-        </div>
-
-        <% if current_user.id == comment.user_id %>
-          <%= link_to("/comments/#{comment.id}/destroy", {method: "post"}) do %>
-            <div class="edit-destroy-btn">
-              <p>削</p>
-            </div>
-          <% end %>
-        <% end %>
-
-    </div>
-    <% end %>
 
 
 

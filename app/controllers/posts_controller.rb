@@ -22,27 +22,30 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+
+
+
   def create
-    @newpost = Post.new(
+    @post = Post.new(
       title: params[:title],
       content: params[:content],
       user_id: current_user.id,
-      limit: params[:limit],
+      limitday: params[:limitday],
       place: params[:place]
      )
 
-     unless @newpost.save
-       render("posts/new")
-     end
+     # unless @newpost.save
+     #   render("posts/new")
+     # end
 
      if params[:pimage]
-       @newpost.post_image = "#{SecureRandom.uuid}.jpg"
+       @post.post_image = "#{SecureRandom.uuid}.jpg"
        image = params[:pimage]
-       File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/post_images/#{@newpost.post_image}", image.read)
+       File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/post_images/#{@post.post_image}", image.read)
      end
 
 
-    if @newpost.save
+    if @post.save
       flash[:notice] = "TASKを作成！！さぁ、チャレンジしよう！！"
       redirect_to('/posts/index')
     else
@@ -60,7 +63,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @post.title = params[:title]
     @post.content = params[:content]
-    @post.limit = params[:limit]
+    @post.limitday = params[:limitday]
     @post.place = params[:place]
 
     if params[:pimage]

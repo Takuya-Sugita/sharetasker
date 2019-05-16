@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_15_215958) do
+ActiveRecord::Schema.define(version: 2019_05_16_132550) do
 
   create_table "comments", force: :cascade do |t|
-    t.text "comment", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text "comment"
+    t.string "comment_image"
     t.integer "post_id"
     t.integer "user_id"
-    t.string "comment_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "post_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,28 +31,24 @@ ActiveRecord::Schema.define(version: 2019_05_15_215958) do
   create_table "posts", force: :cascade do |t|
     t.text "title"
     t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.string "post_image"
     t.text "place"
     t.datetime "limitday"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "post_image"
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "following_id"
     t.integer "follower_id"
+    t.integer "following_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "image_name"
-    t.string "back_image"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -60,9 +56,9 @@ ActiveRecord::Schema.define(version: 2019_05_15_215958) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "encrypted_password"
-    t.string "password_digest"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.string "name"
+    t.string "back_image"
+    t.string "image_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
