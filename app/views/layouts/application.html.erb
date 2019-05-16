@@ -105,6 +105,7 @@
 
 
 
+
     <% if flash[:notice] %>
       <div class="flash">
         <%= flash[:notice] %>
@@ -113,18 +114,6 @@
     <% end %>
     <%= yield %>
 
-    <script>
-      $('#datetimepickerDetailTaskDeadline').datetimepicker({
-        language: 'ja',
-        format: 'MM/DD/YYYY HH:mm'
-      });
-      function make_post() {
-        if(moment($('#DetailTaskDeadline').value(),'MM/DD/YYYY HH:mm').isValid()){
-          $('#DetailTaskDeadline').value() = moment($('#DetailTaskDeadline').value(),'MM/DD/YYYY HH:mm').utc().format();
-        }
-        // document.send_post.submit();
-        console.log(  $('#DetailTaskDeadline').value())
-      }
-    </script>
+
   </body>
 </html>

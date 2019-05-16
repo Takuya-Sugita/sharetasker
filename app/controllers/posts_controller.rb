@@ -34,7 +34,7 @@ class PostsController < ApplicationController
       place: params[:place]
      )
 
-     # unless @newpost.save
+     # unless @post.save
      #   render("posts/new")
      # end
 
