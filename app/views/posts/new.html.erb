@@ -21,7 +21,7 @@
 
       <p>期限</p>
       <div class="input-group date" id="datetimepickerDetailTaskDeadline" data-target-input="nearest">
-        <input id="DetailTaskDeadline" value="nil" name="limitday" type="text" class="form-control datetimepicker-input" data-target="#datetimepickerDetailTaskDeadline" />
+        <input id="DetailTaskDeadline" value="<%= @post.limitday %>" name="limitday" type="text" class="form-control datetimepicker-input" data-target="#datetimepickerDetailTaskDeadline" />
         <div class="input-group-append" data-target="#datetimepickerDetailTaskDeadline" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i>
           </div>
@@ -51,11 +51,11 @@
 <script>
   $('#datetimepickerDetailTaskDeadline').datetimepicker({
     language: 'ja',
-    format: 'MM-DD-YYYY'
+    format: 'YYYY-MM-DD HH:mm'
   });
   function make_post() {
-    if(moment($('#DetailTaskDeadline').value(),'MM/DD/YYYY HH:mm').isValid()){
-      $('#DetailTaskDeadline').value() = moment($('#DetailTaskDeadline').value(),'YYYY/MM/DD HH:mm').utc().format();
+    if(moment($('#DetailTaskDeadline').value(),'YYYY/DD/MM HH:mm').isValid()){
+      $('#DetailTaskDeadline').value() = moment($('#DetailTaskDeadline').value(),'YYYY/DD/MM HH:mm').UTC().format();
     }
     // document.send_post.submit();
     console.log(  $('#DetailTaskDeadline').value())
