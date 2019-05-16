@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  admin                  :boolean          default(FALSE)
 #  back_image             :string
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string

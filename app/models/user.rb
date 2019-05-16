@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  admin                  :boolean          default(FALSE)
 #  back_image             :string
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
@@ -23,10 +24,6 @@
 #
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -57,6 +54,6 @@ class User < ApplicationRecord
 
       def already_liked?(post)
         self.likes.exists?(post_id: post.id)
-      end 
+      end
 
 end
