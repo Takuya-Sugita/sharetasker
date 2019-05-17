@@ -3,7 +3,7 @@ class BackImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  process resize_to_fill: [800, 800]
+  process resize_to_fill: [800, 500]
   process resize_to_limit: [1500, 1500]
 
   # Choose what kind of storage to use for this uploader:

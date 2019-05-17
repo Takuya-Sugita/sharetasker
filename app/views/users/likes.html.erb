@@ -25,23 +25,29 @@
     <% end %>
 
     <% if current_user.id != @user.id %>
-      <% if @user.followed_by?(current_user) %>
-        <div class="follow">
-          <%= link_to("フォロー済", "/relationships/#{@user.id}/destroy", {method: "post"})%>
-        </div>
-      <% else %>
-        <div class="unfollow">
-          <%= link_to("フォローする", "/relationships/#{@user.id}/create", {method: "post"})%>
-        </div>
-      <% end %>
+      <div class="follow-switch-btn">
+        <% if @user.followed_by?(current_user) %>
+          <%= link_to("/relationships/#{@user.id}/destroy", {method: "post"}) do %>
+            <div class="follow">
+              <p>フォロー中</p>
+            </div>
+          <% end %>
+        <% else %>
+          <%= link_to("/relationships/#{@user.id}/create", {method: "post"}) do %>
+            <div class="unfollow">
+              <p>フォローする</p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
 
     <div class="users-tabs-btn">
     <ul class="users-tabs">
-      <li>
+      <li class="post-task">
         <%= link_to("投稿TASK", "/users/#{@user.id}") %>
       </li>
-      <li>
+      <li class="challenge-task">
         <%= link_to("チャレンジ中のTASK", "/users/#{@user.id}/likes") %>
       </li>
     </ul>

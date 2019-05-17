@@ -185,10 +185,17 @@
 
 .users-tabs-btn li {
   width: 500px;
-  background-color: #EEEEEE;
   display: table-cell;
   display: inline-block;
   font-size: 20px;
+}
+
+.post-task {
+  background-color: #FFFFCC;
+}
+
+.challenge-task {
+  background-color: #FF9999;
 }
 
 .follow-switch-btn {
@@ -207,8 +214,11 @@
   text-decoration: none;
   background: #CC0000;/*ボタン色*/
   color: white;
-  border-bottom: solid 4px #627295;
+  border-bottom: solid 4px #993333;
   border-radius: 3px;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 30px;
 
 }
 
@@ -230,8 +240,11 @@
   text-decoration: none;
   background: #CC0000;/*ボタン色*/
   color: white;
-  border-bottom: solid 4px #627295;
+  border-bottom: solid 4px #993333;
   border-radius: 3px;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 30px;
 }
 
 .unfollow p {
@@ -248,7 +261,7 @@
 .back-image {
   // background-color: lime;
   width: 100%;
-  height: 600px;
+  height: auto;
   background-size: cover;
   margin-left: auto;
   margin-right: auto;
@@ -261,7 +274,7 @@
 
 .back-image img {
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 .shift-to-search {

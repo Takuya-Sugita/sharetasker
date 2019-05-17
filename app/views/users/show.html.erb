@@ -51,10 +51,10 @@
 
     <div class="users-tabs-btn">
     <ul class="users-tabs">
-      <li>
+      <li class="post-task">
         <%= link_to("投稿TASK", "/users/#{@user.id}") %>
       </li>
-      <li>
+      <li class="challenge-task">
         <%= link_to("チャレンジ中のTASK", "/users/#{@user.id}/likes") %>
       </li>
     </ul>
