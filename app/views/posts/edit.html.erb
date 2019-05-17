@@ -33,10 +33,22 @@
       <p>場所<span>（任意）</span></p>
       <input type="text" name="place" value="<%= @post.place %>">
 
+      <p>縛り</p>
+      <div class="tie">
+        <input type="text" name="tie" value="<%= @post.tie %>" placeholder="特にない場合、「無し」と記述">
+      </div>
+
       <div class="pimage">
       <p>画像</p>
       <input name="pimage" type="file">
       </div>
+
+      <% if @post.post_image %>
+        <div class="post-thumb">
+          <img src="<%= "#{@post.post_image.thumb}" %>">
+        </div>
+      <% end %>
+
 
       <div class="post-btn">
           <button onclick="make_post()">投稿</button>

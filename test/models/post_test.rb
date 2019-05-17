@@ -7,6 +7,7 @@
 #  limitday   :datetime
 #  place      :text
 #  post_image :string
+#  tie        :text
 #  title      :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

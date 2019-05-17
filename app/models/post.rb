@@ -7,6 +7,7 @@
 #  limitday   :datetime
 #  place      :text
 #  post_image :string
+#  tie        :text
 #  title      :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -27,6 +28,7 @@ class Post < ApplicationRecord
   validates :user_id, {presence: true}
   validates :limitday, {presence: true}
   validates :place, {presence: true}
+  validates :tie, {presence: true}
 
   def user
     return User.find_by(id: self.user_id)

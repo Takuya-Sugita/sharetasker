@@ -32,6 +32,7 @@ class PostsController < ApplicationController
       content: params[:content],
       user_id: current_user.id,
       limitday: params[:limitday],
+      tie: params[:tie],
       place: params[:place],
       post_image: params[:pimage]
      )
@@ -68,6 +69,7 @@ class PostsController < ApplicationController
     @post.limitday = params[:limitday]
     @post.place = params[:place]
     @post.post_image = params[:pimage]
+    @post.tie = params[:tie]
     # if params[:pimage]
     #   @post.post_image = "#{SecureRandom.uuid}.jpg"
     #   image = params[:pimage]

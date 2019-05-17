@@ -33,10 +33,21 @@
       <p>場所<span>（任意）</span></p>
       <input type="text" name="place" value="指定しない" >
 
+      <p>縛り</p>
+      <div class="tie">
+        <input type="text" name="tie" value="<%= @post.tie %>" placeholder="特にない場合、「無し」と記述">
+      </div>
+
       <div class="pimage">
       <p>画像<span>（任意）</span></p>
       <input name="pimage" type="file" accept="image/png, image/jpeg">
       </div>
+
+      <% if @post.post_image %>
+        <div class="post-thumb">
+          <img src="<%= "#{@post.post_image.thumb}" %>">
+        </div>
+      <% end %>
 
       <!-- -------------------------------画像キリトリ処理！！--------------------------------------------- -->
 

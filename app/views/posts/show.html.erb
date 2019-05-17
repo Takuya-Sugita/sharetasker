@@ -72,6 +72,11 @@
       <%= @post.content %>
     </div>
 
+    <div class="posts-show-tie">
+      <h3>縛り内容</h3>
+      <%= @post.tie %>
+    </div>
+
     <% if @post.user_id == current_user.id %>
       <%= link_to( "/posts/#{@post.id}/edit") do %>
         <div class="edit-btn">

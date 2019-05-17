@@ -135,10 +135,37 @@
   background-color: white;
   overflow: hidden;
   border: solid 1px silver;
-  box-shadow: 0 0px 0px #c1ced7;
-  border-bottom: solid 1px black;
+  border-radius: 5px;
   font-size: 20px;
   text-align: center;
+  width: 80%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.posts-index-tie {
+  width: 80%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid 0.5px silver;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 2%;
+  color: red;
+  text-align: center;
+}
+
+.posts-index-tie h3 {
+  color: silver;
+  text-align: center;
+  // background-color: red;
+}
+
+.posts-index-tie p {
+  font-size: 1vw;
 }
 
 .posts-index-date {
@@ -196,7 +223,7 @@
 
 .posts-form {
   width: 60%;
-  height: 850px;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
@@ -223,6 +250,11 @@
   width: 350px;
   height: 50px;
   font-size: 30px;
+}
+
+.tie input {
+  width: 60%;
+  font-size: 1.2rem;
 }
 
 
@@ -341,6 +373,26 @@
   padding: 10px;
   text-align: left;
 }
+
+.posts-show-tie {
+    width: 80%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 0.5px silver;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 2%;
+    color: red;
+    text-align: center;
+}
+
+
+.posts-show-tie h3 {
+  color: silver;
+}
+
 
 .edit-btn {
   width: 100px;
