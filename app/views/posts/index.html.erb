@@ -7,7 +7,7 @@
     </div>
 
     <% @publicPost.each do |publicPost| %>
-      <%= link_to("posts/#{publicPost.id}") do %>
+      <%= link_to("#{publicPost.id}") do %>
         <div class="public-post-box">
 
           <div class="public-post-title">
@@ -51,20 +51,21 @@
             <p>場所:<%= re_post.place %></p>
           </div>
 
-
-
           <div class="post-user">
-            <div class="post-user-image">
+             <div class="post-user-image">
               <%= link_to("/users/#{re_post.user.id}") do %>
                 <img src="<%= "#{re_post.user.image_name}" %>">
               <% end %>
             </div>
+
+
 
             <div class="post-user-name">
               <%= re_post.user.name %>
             </div>
           </div>
 
+          <%= link_to("/posts/#{re_post.id}") do %>
 
           <% if re_post.post_image %>
             <div class="post-index-image">
@@ -72,7 +73,6 @@
             </div>
           <% end %>
 
-          <%= link_to("/posts/#{re_post.id}") do %>
           <div class="posts-index-title">
             <%= re_post.title %>
           </div>

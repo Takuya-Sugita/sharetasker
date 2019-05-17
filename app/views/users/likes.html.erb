@@ -5,13 +5,13 @@
 
     <% if @user.back_image %>
     <div class="back-image">
-      <img src="<%= "/back_images/#{@user.back_image}" %>" alt="noimage">
+      <img src="<%= "#{@user.back_image}" %>" alt="noimage">
     </div>
     <% end %>
 
     <div class="image-back">
       <div class="user_image">
-        <img src="<%= "/user_images/#{@user.image_name}"%>" alt="defa">
+        <img src="<%= "#{@user.image_name}"%>" alt="defa">
       </div>
     </div>
     <%= @user.name %>
@@ -59,7 +59,7 @@
         <div class="post-user-show">
           <div class="post-user-image">
             <%= link_to("/users/#{post.user.id}") do %>
-              <img src="<%= "/user_images/#{post.user.image_name}" %>">
+              <img src="<%= "#{post.user.image_name}" %>">
             <% end %>
           </div>
           <div class="post-user-name">
@@ -69,7 +69,7 @@
 
         <% if post.post_image %>
           <div class="post-index-image">
-            <img src="<%= "/post_images/#{post.post_image}" %>">
+            <img src="<%= "#{post.post_image}" %>">
           </div>
         <% end %>
 
