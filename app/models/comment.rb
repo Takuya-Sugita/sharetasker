@@ -15,6 +15,8 @@ class Comment < ApplicationRecord
   belongs_to :post
   belongs_to :user
 
+  mount_uploader :comment_image, CommentImageUploader
+
   validates :comment, {presence: true, length:{maximum: 200}}
   validates :user_id, {presence: true}
   validates :post_id, {presence: true}

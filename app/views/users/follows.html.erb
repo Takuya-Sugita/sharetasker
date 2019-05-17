@@ -4,11 +4,11 @@
     <div class="users-box">
         <div class="user_image">
           <%= link_to("/users/#{follow_user.id}") do %>
-            <img src="<%= "/user_images/#{follow_user.image_name}"%>" alt="defa">
+            <img src="<%= "#{follow_user.image_name}"%>" alt="defa">
+            <%= follow_user.name %>
           <% end %>
         </div>
 
-        <%= follow_user.name %>
 
     </div>
     <% end %>

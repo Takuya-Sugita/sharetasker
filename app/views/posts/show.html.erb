@@ -18,7 +18,7 @@
       <div class="post-show-user">
         <%= link_to("/users/#{@user.id}") do %>
         <div class="post-user-image">
-          <img src="<%= "/user_images/#{@user.image_name}" %>">
+          <img src="<%= "#{@user.image_name}" %>">
         </div>
         <%= @user.name %>
         <% end %>
@@ -37,7 +37,7 @@
 
     <% if @post.post_image %>
       <div class="post-image">
-        <img src="<%= "/post_images/#{@post.post_image}" %>">
+        <img src="<%= "#{@post.post_image}" %>">
       </div>
     <% end %>
 
@@ -121,14 +121,14 @@
       <div class="comment-body">
           <%= link_to("/users/#{comment.user_id}") do %>
             <div class="comment-user-image">
-              <img src="<%= "/user_images/#{comment.user.image_name}"%>">
+              <img src="<%= "#{comment.user.image_name}"%>">
             </div>
           <% end %>
 
 
           <% if comment.comment_image %>
             <div class="comment-image">
-              <img src="<%= "/comment_images/#{comment.comment_image}" %>">
+              <img src="<%= "#{comment.comment_image}" %>">
             </div>
           <% end %>
 
@@ -155,7 +155,7 @@
     <div class="challenging-user">
       <%=  link_to("/users/#{liked_user.id}") do %>
       <div class="user_image">
-        <img src="<%= "/user_images/#{liked_user.image_name}"%>" alt="defa">
+        <img src="<%= "#{liked_user.image_name}"%>" alt="defa">
       </div>
       <% end %>
     </div>

@@ -1,5 +1,33 @@
 <div class="posts-back">
 
+  <div class="public-post">
+
+    <div class="public-post-message">
+      <h1>パブリックチャレンジ</h1>
+    </div>
+
+    <% @publicPost.each do |publicPost| %>
+      <%= link_to("posts/#{publicPost.id}") do %>
+        <div class="public-post-box">
+
+          <div class="public-post-title">
+            <h3><%= publicPost.title %></h3>
+          </div>
+
+          <div class="public-post-limitday">
+            <%= publicPost.limitday %>
+            <p>まで</p>
+          </div>
+
+          <div class="public-post-image">
+            <img src="<%= "#{publicPost.post_image}" %>">
+          </div>
+
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="posts-box">
 
     <%= search_form_for @search, url:posts_index_path do |f| %>
@@ -28,7 +56,7 @@
           <div class="post-user">
             <div class="post-user-image">
               <%= link_to("/users/#{re_post.user.id}") do %>
-                <img src="<%= "/user_images/#{re_post.user.image_name}" %>">
+                <img src="<%= "#{re_post.user.image_name}" %>">
               <% end %>
             </div>
 
@@ -40,7 +68,7 @@
 
           <% if re_post.post_image %>
             <div class="post-index-image">
-              <img src="<%= "/post_images/#{re_post.post_image}" %>">
+              <img src="<%= "#{re_post.post_image}" %>">
             </div>
           <% end %>
 

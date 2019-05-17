@@ -137,6 +137,8 @@ img {
   height: 800px;
   background-size: cover;
   background-image: url('study.jpg');
+  background-color: white;
+  opacity: 0.6;
   padding-top: 450px;
   padding-left: 100px;
 }
@@ -149,8 +151,9 @@ img {
 .app-message h1 {
   margin: 0;
   font-family: 'Noto Sans JP', sans-serif;
-  color: #222222;
+  color:  black;
   display: block;
+  opacity: 1.0;
 }
 
 .main-back {

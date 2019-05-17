@@ -51,18 +51,20 @@ class UsersController < ApplicationController
     @user = User.find_by(id:params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
+    @user.image_name = params[:image]
+    @user.back_image = params[:bimage]
 
-    if params[:image]
-      @user.image_name = "#{SecureRandom.uuid}.jpg"
-      image = params[:image]
-      File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/user_images/#{@user.image_name}", image.read)
-    end
+    # if params[:image]
+    #   @user.image_name = "#{SecureRandom.uuid}.jpg"
+    #   image = params[:image]
+    #   File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/user_images/#{@user.image_name}", image.read)
+    # end
 
-    if params[:bimage]
-      @user.back_image = "#{SecureRandom.uuid}.jpg"
-      bimage = params[:bimage]
-      File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/back_images/#{@user.back_image}", bimage.read)
-    end
+    # if params[:bimage]
+    #   @user.back_image = "#{SecureRandom.uuid}.jpg"
+    #   bimage = params[:bimage]
+    #   File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/back_images/#{@user.back_image}", bimage.read)
+    # end
 
     if @user.save
       flash[:notice] = "変更を保存しました"

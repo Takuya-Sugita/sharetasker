@@ -44,6 +44,10 @@ class User < ApplicationRecord
       validates :email, {presence: true, uniqueness:true}
       validates :password, {presence: true, allow_nil: true}
 
+      mount_uploader :image_name, UserImageUploader
+      mount_uploader :back_image, BackImageUploader
+
+
        def posts
         return Post.where(user_id: self.id)
        end

@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(created_at: :desc)
+    @publicPost = Post.where(user_id:1).order(created_at: :desc)
     @search = Post.ransack(params[:q])
     @search.sorts = 'created_at desc' if @search.sorts.empty?
     @re_posts = @search.result
@@ -31,18 +32,19 @@ class PostsController < ApplicationController
       content: params[:content],
       user_id: current_user.id,
       limitday: params[:limitday],
-      place: params[:place]
+      place: params[:place],
+      post_image: params[:pimage]
      )
 
      # unless @post.save
      #   render("posts/new")
      # end
 
-     if params[:pimage]
-       @post.post_image = "#{SecureRandom.uuid}.jpg"
-       image = params[:pimage]
-       File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/post_images/#{@post.post_image}", image.read)
-     end
+     # if params[:pimage]
+     #   @post.post_image = "#{SecureRandom.uuid}.jpg"
+     #   image = params[:pimage]
+     #   File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/post_images/#{@post.post_image}", image.read)
+     # end
 
 
     if @post.save
@@ -65,12 +67,12 @@ class PostsController < ApplicationController
     @post.content = params[:content]
     @post.limitday = params[:limitday]
     @post.place = params[:place]
-
-    if params[:pimage]
-      @post.post_image = "#{SecureRandom.uuid}.jpg"
-      image = params[:pimage]
-      File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/post_images/#{@post.post_image}", image.read)
-    end
+    @post.post_image = params[:pimage]
+    # if params[:pimage]
+    #   @post.post_image = "#{SecureRandom.uuid}.jpg"
+    #   image = params[:pimage]
+    #   File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/post_images/#{@post.post_image}", image.read)
+    # end
 
     if @post.save
       flash[:notice] = "編集が完了しました"

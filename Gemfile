@@ -36,6 +36,9 @@ gem 'rails_admin', '~>1.3'
 
 gem 'cancancan', '~> 2.0'
 
+gem 'mini_magick'
+
+gem 'carrierwave'
 
 
 # Use Redis adapter to run Action Cable in production

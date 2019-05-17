@@ -12,7 +12,7 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
     </div>
 
-    <div class="actions">
+    <div class="confirm-actions">
       <%= f.submit "確認メール再送信" %>
     </div>
   <% end %>

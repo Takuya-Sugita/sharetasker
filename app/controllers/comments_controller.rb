@@ -8,14 +8,15 @@ class CommentsController < ApplicationController
     @comment = Comment.new(
       comment: params[:comment],
       user_id: current_user.id,
-      post_id: params[:id]
+      post_id: params[:id],
+      comment_image: params[:cimage]
     )
 
-    if params[:cimage]
-      @comment.comment_image = "#{@comment.comment_image}.jpg"
-      image = params[:cimage]
-      File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/comment_images/#{@comment.comment_image}", image.read)
-    end
+    # if params[:cimage]
+    #   @comment.comment_image = "#{@comment.comment_image}.jpg"
+    #   image = params[:cimage]
+    #   File.binwrite("/home/vagrant/rails_lessons/sharetasker/public/comment_images/#{@comment.comment_image}", image.read)
+    # end
 
     if @comment.save
       flash[:notice] = "コメントしました"

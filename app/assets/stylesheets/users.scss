@@ -8,6 +8,11 @@
   color: black;
 }
 
+.users-back a:hover {
+  color: black;
+  text-decoration: none;
+}
+
 .user-search {
   width: 80%;
   margin-left: auto;
@@ -106,9 +111,10 @@
 
 .users-form {
   width: 60%;
-  height: 700px;
+  height: 800px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 50px;
   background-color:white;
   border: solid 1px silver;
   border-radius: 5px;
@@ -140,7 +146,7 @@
 .edit-image input {
   margin: 30px;
   width: 500px;
-  height: 30px;
+  height: 5vh;
   padding: 10px;
   color: black;
   font-size: 20px;
@@ -291,7 +297,6 @@
 }
 
 .login-tabs {
-  border: solid 1px aqua;
 }
 
 .actions {
@@ -313,4 +318,8 @@
   -webkit-transform: translateY(4px);
   transform: translateY(4px);/*下に動く*/
   border-bottom: none;/*線を消す*/
+}
+
+.confirm-actions {
+  text-align: center;
 }
