@@ -13,7 +13,7 @@
 
       <div id="profile-edit" class="tab-pane fade show active" role="tabpanel" aria-labelledby="profile-edit-tab">
         <div class="card-body d-flex align-items-center">
-          <%= form_with model: @user, url: user_registration_path, local: true, class: "form", method: 'patch' do |f| %>
+            <%= form_with model: @user, url: image_update_path(@user), local: true, class: "form", method: 'post' do |f| %>
 
             <h3 class="text-center text-info">ユーザー編集</h3>
 

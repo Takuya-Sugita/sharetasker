@@ -1,16 +1,25 @@
-<div class="users-back">
+<div class="container" style="margin-top: 80px">
 
+  <h1 class="text-center font-weight-bold">フォロー中のユーザー</h1>
+  <hr>
+
+  <div class="row">
     <% @follow_users.each do |follow_user| %>
-    <div class="users-box">
-        <div class="user_image">
-          <%= link_to("/users/#{follow_user.id}") do %>
-            <img src="<%= "#{follow_user.image_name}"%>" alt="defa">
-            <%= follow_user.name %>
-          <% end %>
+    <div class="col-lg-3 col-md-3 col-sm-12">
+      <div class="card mb-4 shadow-sm">
+        <img src="<%= follow_user.image_name %>" width="100%" height="auto" style="background-color: lightgrey">
+        <div class="card-body">
+          <h5 class="card-title"><%= follow_user.name %></h5>
+
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <%= link_to '詳細', profile_path(follow_user), :class => 'btn btn-outline-primary' %>
+            </div>
+          </div>
         </div>
-
-
+      </div>
     </div>
     <% end %>
-
+  </div>
 </div>

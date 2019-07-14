@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     post "logout", :to => "users/sessions#destroy"
     post  "repassword" => "users/passwords#create"
     get "reconfirm" => "users/confirmations#new"
+    post "reconfirm" => "users/confirmations#create"
   end
 
   post 'likes/:post_id/create' => 'likes#create', as: "likes_create"
@@ -29,9 +30,9 @@ Rails.application.routes.draw do
   get 'users/follows' => 'users#follows', as: "follows"
   get 'users/search' => 'users#search'
   get 'users/:id' => 'users#show', as: 'profile'
+  post 'users/:id/update' => 'users#update', as: "image_update"
   # post 'users/create' => 'users/registrations#create'
   # get 'users/:id/edit' => 'users#edit'
-  # post 'users/:id/update' => 'users#update'
   # get 'users/:id/likes' => 'users#likes'
   # get 'users/:id/followers' => 'users#followers'
 
@@ -49,6 +50,8 @@ Rails.application.routes.draw do
 
   post 'comments/:id/create' => 'comments#create', as: "comments_create"
   post 'comments/:id/destroy' => 'comments#destroy', as: "comments_destroy"
+
+  get '/' => "home#top"
 
 
   if Rails.env.development?

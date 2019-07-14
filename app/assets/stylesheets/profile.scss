@@ -9,3 +9,11 @@
   padding-top: calc(6rem + 74px);
   padding-bottom: 6rem;
 }
+
+.follow-btn {
+  background-color: silver;
+}
+
+.follow-btn:hover a {
+  text-decoration: none;
+}

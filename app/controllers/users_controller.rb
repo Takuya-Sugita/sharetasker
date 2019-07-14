@@ -10,8 +10,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @search = User.ransack(params[:q])
-    @re_users = @search.result
+    @user_search = User.ransack(params[:q])
+    @re_users = @user_search.result
   end
 
   def show
@@ -46,6 +46,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id:params[:id])
     @user.name = params[:name]
+    @user.image_name = params[:image]
+    @user.back_image = params[:bimage]
 
 
     # @user.email = params[:email]
