@@ -40,6 +40,8 @@ gem 'mini_magick'
 
 gem 'carrierwave'
 
+gem 'mobylette'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

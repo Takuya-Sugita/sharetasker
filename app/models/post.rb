@@ -22,7 +22,6 @@ class Post < ApplicationRecord
 
   mount_uploader :post_image, PostImageUploader
 
-
   validates :title, {presence: true, length: {maximum: 20}}
   validates :content, {presence: true, length: {maximum: 300}}
   validates :user_id, {presence: true}
