@@ -9,6 +9,8 @@
         <% if user_signed_in? %>
           <li class="nav-item"><%= link_to 'タスク作成', posts_new_path, :class => 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'タスク一覧', posts_index_path, :class => 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'ユーザー一覧',  users_index_path, :class => 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'フォロー',  follows_path, :class => 'nav-link' %></li>
 
           <li class="nav-item">
             <%= search_form_for @task_search, url:posts_index_path, class: "form-inline" do |f| %>

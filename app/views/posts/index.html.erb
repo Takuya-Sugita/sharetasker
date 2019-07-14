@@ -7,7 +7,7 @@
       <% @public_posts.each do |public_post| %>
         <div class="col-lg-4 col-md-6 col-sm-12">
           <div class="card mb-4 shadow-sm">
-            <img src="" width="100%" height="225" style="background-color: #1AD027">
+            <img src="<%= public_post.post_image %>" width="100%" height="225" style="background-color: #1AD027">
             <div class="card-body">
               <h5 class="card-title"><%= public_post.title %></h5>
               <p class="card-text"><%= public_post.content %></p>
@@ -43,7 +43,7 @@
       <% @re_posts.each do |re_post| %>
         <div class="col-lg-4 col-md-6 col-sm-12">
           <div class="card mb-4 shadow-sm">
-            <img src="" width="100%" height="225" style="background-color: #1AD027">
+            <img src="<%= re_post.post_image %>" width="100%" height="225" style="background-color: #1AD027">
             <div class="card-body">
               <h5 class="card-title"><%= re_post.title %></h5>
               <p class="card-text"><%= re_post.content %></p>

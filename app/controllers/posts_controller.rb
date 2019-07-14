@@ -31,8 +31,7 @@ class PostsController < ApplicationController
       limitday: params[:limitday],
       tie: params[:tie],
       place: params[:place],
-
-      # post_image: params[:pimage]
+      post_image: params[:pimage]
      )
 
      # unless @post.save

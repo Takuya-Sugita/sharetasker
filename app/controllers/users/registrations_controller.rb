@@ -9,6 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if params[:name]
       @user.name = params[:name]
+      @user.image_name = params[:image_name]
       puts params
       if @user.save
         flash[:notice] = "変更を保存しました"

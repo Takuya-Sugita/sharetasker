@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   get 'users/index' => 'users#index'
   get 'users/new' => 'users#new'
-  get 'users/follows' => 'users#follows'
+  get 'users/follows' => 'users#follows', as: "follows"
   get 'users/search' => 'users#search'
   get 'users/:id' => 'users#show', as: 'profile'
   # post 'users/create' => 'users/registrations#create'
