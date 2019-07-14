@@ -27,7 +27,7 @@ class Post < ApplicationRecord
   validates :user_id, {presence: true}
   validates :limitday, {presence: true}
   validates :place, {presence: false}
-  validates :tie, {presence: true}
+  validates :tie, {presence: false}
 
   def user
     User.find_by(id: self.user_id)

@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(created_at: :desc)
-    @public_posts = Post.where(user_id:1).sample(3)
+    @public_posts = Post.where(user_id:1).last(3)
 
     @task_search.sorts = 'created_at desc' if @task_search.sorts.empty?
     @re_posts = @task_search.result

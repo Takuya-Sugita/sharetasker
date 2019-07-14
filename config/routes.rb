@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => {
       :registrations => 'users/registrations',
-      :sessions => 'users/sessions'
+      :sessions => 'users/sessions',
+      :passwords => 'users/passwords',
+      :confirmations => 'users/confirmations'
   }
 
 
@@ -18,8 +20,9 @@ Rails.application.routes.draw do
     post 'users/create' => 'users/registrations#create'
     post "logout", :to => "users/sessions#destroy"
     post  "repassword" => "users/passwords#create"
+    get "repassword" => "users/passwords#edit", as: "edit_password"
     get "reconfirm" => "users/confirmations#new"
-    post "reconfirm" => "users/confirmations#create"
+    post "reconfirm" => "users/confirmations#create", as: "send_reconfirm"
   end
 
   post 'likes/:post_id/create' => 'likes#create', as: "likes_create"
