@@ -1,140 +1,140 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Sharetasker</title>
-    <meta name="description" content="一人ではがんばれない・・・そんなときはありませんか？
-    sharetaskerはそんなあなたの味方です。達成したい目標を投稿し、共有することで、同じ目標に向かう
-    仲間たちとともに歩むことができます。">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-    <meta name="keywords" content="努力, SNS, Sharetasker, sharetaser, 共有">
-    <meta property="og:title" content="努力を共有するSNS、Sharetasker">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="努力を共有するSNS、Sharetasker">
-    <meta property="og:description" content="一人ではがんばれない・・・そんなときはありませんか？
-    sharetaskerはそんなあなたの味方です。達成したい目標を投稿し、共有することで、同じ目標に向かう
-    仲間たちとともに歩むことができます。">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Sharetasker</title>
+  <meta name="description" content="一人ではがんばれない・・・そんなときはありませんか? sharetaskerはそんなあなたの味方です。達成したい目標を投稿し、共有することで、同じ目標に向かう仲間たちとともに歩むことができます。">
+  <meta name="keywords" content="努力, SNS, Sharetasker, sharetaser, 共有">
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:300 rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Caveat rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/js/bootstrap-datetimepicker.min.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ja.js" integrity="sha256-CFWtR1hGN/5Vc+kcJkqeMFND0g6gFFZdnSqUtdL7WOQ=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
-  </head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <body>
-      <nav class="navbar navbar-expand-lg navbar-light nav-custom">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+  <meta property="og:title" content="努力を共有するSNS、Sharetasker">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="努力を共有するSNS、Sharetasker">
+  <meta property="og:description" content="一人ではがんばれない・・・そんなときはありませんか? sharetaskerはそんなあなたの味方です。達成したい目標を投稿し、共有することで、同じ目標に向かう仲間たちとともに歩むことができます。">
 
-      <%= link_to '/' do %>
-        <div class="navbar-brand ">
-          Sharetasker
-        </div>
-      <% end %>
 
-        <div class="collapse navbar-collapse link-position" id="navbarTogglerDemo03">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav-ul-position">
-          <% if current_user %>
-            <li class="nav-item active">
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:300">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+  <%= javascript_include_tag 'application' %>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ja.js" integrity="sha256-CFWtR1hGN/5Vc+kcJkqeMFND0g6gFFZdnSqUtdL7WOQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light nav-custom">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <%= link_to '/' do %>
+    <div class="navbar-brand ">
+      Sharetasker
+    </div>
+  <% end %>
+
+  <div class="collapse navbar-collapse link-position" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav-ul-position">
+      <% if current_user %>
+        <li class="nav-item active">
               <span class="nav-link">
                 <%= link_to( "/users/#{current_user.id}") do %>
                   <%= fa_icon("id-card 2x") %>
                   <p>プロフィール</p>
                 <% end %>
               </span>
-            </li>
+        </li>
 
-            <li class="nav-item active">
+        <li class="nav-item active">
               <span class="nav-link">
                 <%= link_to( '/posts/index') do %>
                   <%= fa_icon("list 2x")%>
                   <p>TASK一覧</p>
                   <% end %>
               </span>
-            </li>
+        </li>
 
-            <li class="nav-item active">
+        <li class="nav-item active">
               <span class="nav-link">
                 <%= link_to('/posts/new') do %>
                   <%= fa_icon("edit 2x") %>
                   <p>TASK作成</p>
                 <% end %>
               </span>
-            </li>
+        </li>
 
-            <li class="nav-item active">
+        <li class="nav-item active">
               <span class="nav-link">
                 <%= link_to( "/users/follows") do %>
                   <%= fa_icon("address-book 2x") %>
                   <p>フォロー中ユーザー</p>
                 <% end %>
               </span>
-            </li>
+        </li>
 
-            <li class="nav-item active">
+        <li class="nav-item active">
               <span class="nav-link">
                 <%= link_to("/users/index") do %>
                   <%= fa_icon("user-plus 2x") %>
                   <p>ユーザー一覧</p>
                 <% end %>
               </span>
-            </li>
+        </li>
 
-            <li class="nav-item active">
+        <li class="nav-item active">
               <span class="nav-link">
                 <%= link_to( "/logout", {method: :post}) do %>
                   <%= fa_icon("arrow-right 2x") %>
                   <p>ログアウト</p>
                 <% end %>
               </span>
-            </li>
+        </li>
 
 
 
-          <% else %>
+      <% else %>
 
-            <li class="nav-item active">
+        <li class="nav-item active">
               <span class="nav-link">
                 <%= link_to("ユーザー登録", "/signup") %>
               </span>
-            </li>
+        </li>
 
-            <li class="nav-item active">
-              <span class="nav-link"><%= link_to("ログイン", "/login")%></span>
-            </li>
-
-
-          <% end %>
-        </ul>
-
-        </div>
-
-      </nav>
+        <li class="nav-item active">
+          <span class="nav-link"><%= link_to("ログイン", "/login")%></span>
+        </li>
 
 
+      <% end %>
+    </ul>
+
+  </div>
+
+</nav>
 
 
-    <% if flash[:notice] %>
-      <div class="flash">
-        <%= flash[:notice] %>
-      </div>
-
-    <% end %>
-    <%= yield %>
 
 
-  </body>
+<% if flash[:notice] %>
+  <div class="flash">
+    <%= flash[:notice] %>
+  </div>
+
+<% end %>
+<%= yield %>
+
+
+</body>
 </html>
