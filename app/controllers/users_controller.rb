@@ -50,9 +50,11 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id:params[:id])
     @user.name = params[:name]
-    @user.email = params[:email]
-    @user.image_name = params[:image]
-    @user.back_image = params[:bimage]
+
+
+    # @user.email = params[:email]
+    # @user.image_name = params[:image]
+    # @user.back_image = params[:bimage]
 
     # if params[:image]
     #   @user.image_name = "#{SecureRandom.uuid}.jpg"

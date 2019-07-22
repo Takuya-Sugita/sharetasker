@@ -4,30 +4,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
-  # GET /resource/sign_up
-  def new
-    super
-  end
-
-  # POST /resource
-  def create
-    super
-  end
-
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
-
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
 
-  # DELETE /resource
-  # def destroy
-  #   super
-  # end
+    if params[:name]
+      @user.name = params[:name]
+      puts params
+      if @user.save
+        flash[:notice] = "変更を保存しました"
+        redirect_to profile_path(@user)
+      else
+        flash[:notice] = "変更の保存に失敗しました"
+        redirect_to profile_path(@user)
+      end
+    else
+      super
+    end
+
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

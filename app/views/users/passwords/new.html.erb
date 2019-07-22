@@ -1,22 +1,32 @@
-<div class="users-back">
-  <div class="login-form">
-    <div class="form-heading">
-      <p>パスワードをお忘れですか？</p>
+<div class="main d-flex align-items-center user-form">
+  <div class="container">
+    <div class="card">
+      <div class="card-body  d-flex align-items-center ">
+        <%= form_for(resource, as: resource_name, url: repassword_path, html: { method: :post }) do |f| %>
+
+          <% if alert %>
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <%= alert %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <% end %>
+
+          <h3 class="text-center text-info">パスワードをお忘れですか?</h3>
+
+          <div class="form-group">
+            <%= f.label "メールアドレス:", class: "text-info", for: "email" %>
+            <%= f.email_field :email, class: "form-control", id: "email", autofocus: true, placeholder: "メールアドレス", required: true%>
+          </div>
+
+          <%= f.submit "送信", class: "btn btn-info btn-md" %>
+
+          <hr>
+          <%= link_to 'ログインする', login_path %>
+
+      <% end %>
+      </div>
     </div>
-
-    <%= form_for(resource, as: resource_name, url: repassword_path, html: { method: :post }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "送信" %>
-      </div>
-    <% end %>
-
-    <%= render "users/shared/links" %>
   </div>
 </div>

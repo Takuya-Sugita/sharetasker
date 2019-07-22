@@ -5,19 +5,24 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  devise_for :users, :controllers => {:password => "passwords"}
-# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # devise_for :users, :controllers => {}
+  devise_for :users, :controllers => {
+      :registrations => 'users/registrations',
+      :sessions => 'users/sessions',
+      # :password => "passwords"
+  }
+
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   devise_scope :user do
     get "signup", :to => "users/registrations#new"
-    post 'users/create' => 'users/registrations#create'
     get "login", :to => "users/sessions#new"
     post "login" => "users/sessions#create"
+    post 'users/create' => 'users/registrations#create'
     post "logout", :to => "users/sessions#destroy"
-    get "forgetpassword" => "users/passwords#new"
     post  "repassword" => "users/passwords#create"
     get "reconfirm" => "users/confirmations#new"
-    get 'edit_user_passwords' => "users/passwords#edit"
   end
 
   post 'likes/:post_id/create' => 'likes#create'
@@ -33,8 +38,8 @@ Rails.application.routes.draw do
   get 'users/search' => 'users#search'
   get 'users/:id' => 'users#show', as: 'profile'
   # post 'users/create' => 'users/registrations#create'
-  get 'users/:id/edit' => 'users#edit', as: 'profile_edit'
-  post 'users/:id/update' => 'users#update'
+  # get 'users/:id/edit' => 'users#edit'
+  # post 'users/:id/update' => 'users#update'
   get 'users/:id/likes' => 'users#likes'
 
   # get 'users/:id/followers' => 'users#followers'

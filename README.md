@@ -38,6 +38,7 @@ below variable is about mail setting
 - SITE_URL : web site URL where MissionForest can serve
 - SITE_PORT : web site PORT where MissionForest can serve
 
+## DataBase setting
 ```
 bundle exec rake db:create 
 bundle exec rake db:migrate 
