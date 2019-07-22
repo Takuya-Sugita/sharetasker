@@ -1,43 +1,36 @@
-<div class="users-back">
-  <div class="login-form">
-    <div class="form-heading">
-      <p>ユーザー登録</p>
-    </div>
+<div class="main d-flex align-items-center user-form">
+  <div class="container">
+    <div class="card">
+      <div class="card-body  d-flex align-items-center ">
+        <%= form_with model: @user, url: user_registration_path, local: true, class: "form" do |f| %>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+          <h3 class="text-center text-info">ユーザー登録</h3>
 
+          <%= devise_error_messages! %>
 
-    <div class="field">
-      <%= f.label :ユーザーネーム %><br />
-      <%= f.text_field :name, autofocus: true %>
-    </div>
+          <div class="form-group">
+            <%= f.label "ユーザーネーム:", class: "text-info", for: "username" %>
+            <%= f.text_field :name, class: "form-control", autofocus: true, placeholder: "ユーザーネーム", id: "username", required: true%>
+          </div>
 
+          <div class="form-group">
+            <%= f.label "メールアドレス:", class: "text-info", for: "email" %>
+            <%= f.email_field :email, class: "form-control", id: "email", autofocus: true, placeholder: "メールアドレス", required: true%>
+          </div>
 
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
+          <div class="form-group">
+            <%= f.label "パスワード (#{@minimum_password_length}文字以上):", class: "text-info", for: "password" %>
+            <%= f.password_field :password, class: "form-control", id: "password", autocomplete: "off", minlength: @minimum_password_length, placeholder: "パスワード (#{@minimum_password_length}文字以上)", required: true %>
+          </div>
 
-    <div class="field">
-      <%= f.label :パスワード %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
+          <div class="form-group">
+            <%= f.label "パスワード確認:", class: "text-info", for: "password_confirmation" %>
+            <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off", minlength: @minimum_password_length, placeholder: "パスワード (確認)", required: true%>
+          </div>
 
-    <div class="field">
-      <%= f.label :パスワード（確認用） %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
-
-    <div class="signup-btn">
-      <%= f.submit "登録" %>
-    </div>
-  <% end %>
-    <div class="login-tabs">
-      <%= render "users/shared/links" %>
+          <%= f.submit "登録する", class: "btn btn-info btn-md" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

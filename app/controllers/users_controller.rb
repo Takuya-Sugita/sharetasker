@@ -70,7 +70,8 @@ class UsersController < ApplicationController
       flash[:notice] = "変更を保存しました"
       redirect_to("/users/#{@user.id}")
     else
-      render("users/edit")
+      flash[:notice] = "変更の保存に失敗しました"
+      redirect_to("/users/#{@user.id}")
     end
   end
 

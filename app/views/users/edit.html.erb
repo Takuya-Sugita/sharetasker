@@ -1,38 +1,128 @@
-<div class="users-back">
-  <div class="form-heading">
-    <p>ユーザー編集</p>
+<div class="main d-flex align-items-center user-form">
+  <div class="container">
+
+    <nav>
+      <div class="nav nav-tabs" role="tablist">
+        <a class="nav-item nav-link active" data-toggle="tab" href="#profile-edit" role="tab" aria-controls="profile-edit" aria-selected="true">ユーザー編集</a>
+        <a class="nav-item nav-link" data-toggle="tab" href="#mail-edit" role="tab" aria-controls="nav-profile" aria-selected="false">メールアドレス変更</a>
+        <a class="nav-item nav-link" data-toggle="tab" href="#password-edit" role="tab" aria-controls="nav-contact" aria-selected="false">パスワード変更</a>
+      </div>
+    </nav>
+
+    <div class="card tab-content"  style="border-top-width: 0">
+
+      <% if alert %>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <%= alert %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+
+      <div id="profile-edit" class="card-body d-flex align-items-center tab-pane fade show active" role="tabpanel">
+        <%= form_with model: @user, url: login_path, local: true, class: "form" do |f| %>
+
+          <h3 class="text-center text-info">ユーザー編集</h3>
+
+          <div class="form-group">
+            <%= f.label "メールアドレス:", class: "text-info", for: "email" %>
+            <%= f.email_field :email, class: "form-control", id: "email", autofocus: true, placeholder: "メールアドレス", required: true%>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "パスワード :", class: "text-info", for: "password" %>
+            <%= f.password_field :password, class: "form-control", id: "password", autocomplete: "off",  placeholder: "パスワード", required: true %>
+          </div>
+
+          <%= f.submit "ログイン", class: "btn btn-info btn-md" %>
+        <% end %>
+      </div>
+
+
+      <div id="mail-edit" class="card-body d-flex align-items-center tab-pane fade" role="tabpanel">
+        <%= form_with model: @user, url: login_path, local: true, class: "form" do |f| %>
+
+          <h3 class="text-center text-info">メールアドレス変更</h3>
+
+          <div class="form-group">
+            <%= f.label "メールアドレス:", class: "text-info", for: "email" %>
+            <%= f.email_field :email, class: "form-control", id: "email", autofocus: true, placeholder: "メールアドレス", required: true%>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "パスワード :", class: "text-info", for: "password" %>
+            <%= f.password_field :password, class: "form-control", id: "password", autocomplete: "off",  placeholder: "パスワード", required: true %>
+          </div>
+
+          <%= f.submit "ログイン", class: "btn btn-info btn-md" %>
+        <% end %>
+      </div>
+
+
+
+      <div id="password-edit" class="card-body d-flex align-items-center tab-pane fade" role="tabpanel">
+        <%= form_with model: @user, url: login_path, local: true, class: "form" do |f| %>
+
+          <h3 class="text-center text-info">パスワード変更</h3>
+
+          <div class="form-group">
+            <%= f.label "メールアドレス:", class: "text-info", for: "email" %>
+            <%= f.email_field :email, class: "form-control", id: "email", autofocus: true, placeholder: "メールアドレス", required: true%>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "パスワード :", class: "text-info", for: "password" %>
+            <%= f.password_field :password, class: "form-control", id: "password", autocomplete: "off",  placeholder: "パスワード", required: true %>
+          </div>
+
+          <%= f.submit "ログイン", class: "btn btn-info btn-md" %>
+        <% end %>
+      </div>
+
+
+
+
+
+    </div>
   </div>
-
-  <div class="users-form">
-
-    <% @user.errors.full_messages.each do |message| %>
-      <div class="form-error">
-        <%= message %>
-      </div>
-    <% end %>
-
-<%= form_tag("/users/#{@user.id}/update",{multipart: true}) do %>
-
-      <p>ユーザーネーム</p>
-      <input name="name" type="text" value="<%= @user.name %>">
-
-      <p>E-mail</p>
-      <input name="email" type="email" value="<%= @user.email %>">
-
-      <p>背景画像</p>
-      <div class="edit-image">
-        <input name="bimage" type="file" accept="image/png, image/jpeg">
-      </div>
-
-      <p>アイコン画像</p>
-      <div class="edit-image">
-        <input name="image" type="file"  accept="image/png, image/jpeg">
-      </div>
-
-      <div class="user-edit-btn">
-        <input type="submit" value="保存">
-      </div>
-
-  </div>
-<% end %>
 </div>
+
+<!--<div class="users-back">-->
+<!--  <div class="form-heading">-->
+<!--    <p>ユーザー編集</p>-->
+<!--  </div>-->
+
+<!--  <div class="users-form">-->
+
+<%# @user.errors.full_messages.each do |message| %>
+<!--      <div class="form-error">-->
+<%#= message %>
+<!--      </div>-->
+<%# end %>
+
+<%#= form_tag("/users/#{@user.id}/update",{multipart: true}) do %>
+
+<!--      <p>ユーザーネーム</p>-->
+<!--      <input name="name" type="text" value="<%#= @user.name %>">-->
+
+<!--      <p>E-mail</p>-->
+<!--      <input name="email" type="email" value="<%#= @user.email %>">-->
+
+<!--      <p>背景画像</p>-->
+<!--      <div class="edit-image">-->
+<!--        <input name="bimage" type="file" accept="image/png, image/jpeg">-->
+<!--      </div>-->
+
+<!--      <p>アイコン画像</p>-->
+<!--      <div class="edit-image">-->
+<!--        <input name="image" type="file"  accept="image/png, image/jpeg">-->
+<!--      </div>-->
+
+<!--      <div class="user-edit-btn">-->
+<!--        <input type="submit" value="保存">-->
+<!--      </div>-->
+
+<!--  </div>-->
+<%# end %>
+<!--</div>-->

@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
+  root 'home#top'
+
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, :controllers => {:password => "passwords"}
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   devise_scope :user do
-    get "user/:id", :to => "users/registrations#detail"
     get "signup", :to => "users/registrations#new"
     post 'users/create' => 'users/registrations#create'
     get "login", :to => "users/sessions#new"
@@ -29,9 +31,9 @@ Rails.application.routes.draw do
   get 'users/new' => 'users#new'
   get 'users/follows' => 'users#follows'
   get 'users/search' => 'users#search'
-  get 'users/:id' => 'users#show'
+  get 'users/:id' => 'users#show', as: 'profile'
   # post 'users/create' => 'users/registrations#create'
-  get 'users/:id/edit' => 'users#edit'
+  get 'users/:id/edit' => 'users#edit', as: 'profile_edit'
   post 'users/:id/update' => 'users#update'
   get 'users/:id/likes' => 'users#likes'
 
@@ -53,7 +55,7 @@ Rails.application.routes.draw do
   post 'comments/:id/destroy' => 'comments#destroy'
 
 
-  get '/' => 'home#top'
+
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

@@ -1,13 +1,7 @@
 <div class="users-back">
 
   <div class="users-indi-box">
-    <% if current_user.try(:admin?) %>
-      <%= link_to("/admin") do %>
-      <div class="admin-btn">
-        <p>管理者ページへ</p>
-      </div>
-      <% end %>
-    <% end  %>
+
 
     <% if @user.back_image %>
     <div class="back-image">
