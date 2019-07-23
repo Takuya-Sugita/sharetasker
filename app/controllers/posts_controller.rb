@@ -23,10 +23,8 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-
-
-
   def create
+    puts current_user
     @post = Post.new(
       title: params[:title],
       content: params[:content],
@@ -34,7 +32,8 @@ class PostsController < ApplicationController
       limitday: params[:limitday],
       tie: params[:tie],
       place: params[:place],
-      post_image: params[:pimage]
+
+      # post_image: params[:pimage]
      )
 
      # unless @post.save
@@ -50,9 +49,9 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:notice] = "TASKを作成！！さぁ、チャレンジしよう！！"
-      redirect_to('/posts/index')
+      redirect_to posts_index_path
     else
-      render("posts/new")
+      redirect_to posts_new_path
     end
 
 
