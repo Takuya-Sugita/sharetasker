@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(created_at: :desc)
     @publicPost = Post.where(user_id:1).order(created_at: :desc)
-    @search = Post.ransack(params[:q])
+
     @search.sorts = 'created_at desc' if @search.sorts.empty?
     @re_posts = @search.result
   end
@@ -69,6 +69,7 @@ class PostsController < ApplicationController
     @post.place = params[:place]
     @post.post_image = params[:pimage]
     @post.tie = params[:tie]
+
     # if params[:pimage]
     #   @post.post_image = "#{SecureRandom.uuid}.jpg"
     #   image = params[:pimage]
@@ -77,17 +78,22 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:notice] = "編集が完了しました"
-      redirect_to("/posts/#{@post.id}")
+      redirect_to posts_path(@post)
     else
-      render("posts/edit")
+      flash[:alert] = "編集に失敗しました"
+      redirect_to posts_path(@post)
     end
   end
 
   def destroy
     @post = Post.find_by(id: params[:id])
-    @post.destroy
-    flash[:notice] = "TASKを削除しました"
-    redirect_to posts_index_path
+    if @post.destroy
+      flash[:notice] = "TASKを削除しました"
+      redirect_to posts_index_path
+    else
+      flash[:alert] = "TASKの削除に失敗しました"
+      redirect_to posts_path(@post)
+    end
   end
 
   def ensure_correct_user

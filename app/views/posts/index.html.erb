@@ -34,9 +34,9 @@
       <div class="form-group">
         <div class="search-box">
           <%= f.label :name_cont, "タイトルで検索" %>
-        <%= f.text_field :title_cont, class: "form-control" %>
-      </div>
-      <div class="actions"><%= f.submit "検索" %></div>
+          <%= f.text_field :title_cont, class: "form-control" %>
+        </div>
+        <div class="actions"><%= f.submit "検索" %></div>
       </div>
     <% end %>
 
@@ -52,7 +52,7 @@
           </div>
 
           <div class="post-user">
-             <div class="post-user-image">
+            <div class="post-user-image">
               <%= link_to("/users/#{re_post.user.id}") do %>
                 <img src="<%= "#{re_post.user.image_name}" %>">
               <% end %>
@@ -67,29 +67,29 @@
 
           <%= link_to("/posts/#{re_post.id}") do %>
 
-          <% if re_post.post_image %>
-            <div class="post-index-image">
-              <img src="<%= "#{re_post.post_image}" %>">
+            <% if re_post.post_image %>
+              <div class="post-index-image">
+                <img src="<%= "#{re_post.post_image}" %>">
+              </div>
+            <% end %>
+
+            <div class="posts-index-title">
+              <%= re_post.title %>
             </div>
-          <% end %>
 
-          <div class="posts-index-title">
-            <%= re_post.title %>
-          </div>
+            <div class="posts-index-content">
+              <%= re_post.content %><br>
+            </div>
 
-          <div class="posts-index-content">
-            <%= re_post.content %><br>
-          </div>
-
-          <div class="posts-index-tie">
-            <h3>縛り内容</h3>
-            <p><%= re_post.tie %></p>
-          </div>
+            <div class="posts-index-tie">
+              <h3>縛り内容</h3>
+              <p><%= re_post.tie %></p>
+            </div>
 
           <% end %>
         </div>
 
-     <% end %>
+      <% end %>
 
 
     <% end %>

@@ -9,12 +9,20 @@
         <% if user_signed_in? %>
           <li class="nav-item"><%= link_to 'タスク作成', posts_new_path, :class => 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'タスク一覧', posts_index_path, :class => 'nav-link' %></li>
-        <% end %>
+
+          <li class="nav-item">
+            <%= search_form_for @search, url:posts_index_path, class: "form-inline" do |f| %>
+              <%= f.text_field :title_cont, class: "form-control ml-2 mr-2", type: "search", placeholder: "Search" %>
+              <%= f.submit "Search", class: "btn btn-outline-success" %>
+            <% end %>
+          </li>
+
+      <% end %>
       </ul>
 
       <ul class="navbar-nav">
         <% if user_signed_in? %>
-          <li class="nav-item"><span class="navbar-text font-weight-bold">ようこそ！<%= current_user.name %>さん</span></li>
+          <li class="nav-item"><span class="navbar-text font-weight-bold"><%= current_user.name %> さん</span></li>
 
           <% if current_user.try(:admin?) %>
             <li class="nav-item"><%= link_to '管理者ページ', rails_admin_path, :class => 'nav-link' %></li>
