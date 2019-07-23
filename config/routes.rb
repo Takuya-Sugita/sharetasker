@@ -51,9 +51,9 @@ Rails.application.routes.draw do
   get 'posts/index' => 'posts#index'
   get 'posts/new' => 'posts#new'
   get 'posts/:id' => 'posts#show'
-  post 'posts/create' => 'posts#create'
-  get 'posts/:id/edit' => 'posts#edit'
-  post 'posts/:id/update' => 'posts#update'
+  post 'posts/create' => 'posts#create', as: "posts_create"
+  get 'posts/:id/edit' => 'posts#edit', as: "posts_edit"
+  post 'posts/:id/update' => 'posts#update', as: "posts_update"
   post 'posts/:id/destroy' => 'posts#destroy'
 
   post 'comments/:id/create' => 'comments#create'

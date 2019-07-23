@@ -1,61 +1,104 @@
+<div class="main d-flex align-items-center user-form">
+  <div class="container">
+    <div class="card">
+      <div class="card-body  d-flex align-items-center ">
+        <%= form_with model: @post, url: posts_update_path, method: "post", local: true, class: "form", id: 'createPost', novalidate: true do |f| %>
 
+          <h3 class="text-center text-info">TASKを新しく作成</h3>
 
-<div class="posts-back">
-
-  <div class="form-heading">
-    <p>TASKを編集</p>
-  </div>
-  <%= form_tag("/posts/#{@post.id}/update", {multipart: true, name:"send_post"}) do %>
-  <div class="posts-form">
-    <div class="form-body">
-
-      <% @post.errors.full_messages.each do |message| %>
-        <div class="form-error">
-          <%= message %>
-        </div>
-      <% end %>
-
-      <p>タイトル</p>
-      <input type="text" name="title" value="<%= @post.title %>">
-
-      <p>概要  <span>(難易度や場所も書き込んでください)</span></p>
-      <textarea name="content" ><%= @post.content %></textarea>
-
-      <p>期限</p>
-      <div class="input-group date" id="datetimepickerDetailTaskDeadline" data-target-input="nearest">
-        <input id="DetailTaskDeadline" value="<%= @post.limitday %>" name="limitday" type="text" class="form-control datetimepicker-input" data-target="#datetimepickerDetailTaskDeadline" />
-        <div class="input-group-append" data-target="#datetimepickerDetailTaskDeadline" data-toggle="datetimepicker">
-          <div class="input-group-text"><i class="fa fa-calendar"></i>
+          <div class="form-group">
+            <%= f.label "タイトル:", class: "text-info", for: "title" %>
+            <%= f.text_field :title, name: "title", class: "form-control", id: "title", autofocus: true, autocomplete: "off", placeholder: "タイトル", required: true%>
+            <div class="invalid-feedback">
+              タイトルを入力してください
+            </div>
           </div>
-        </div>
+
+          <div class="form-group">
+            <%= f.label "概要 :", class: "text-info", for: "content" %>
+            <%= f.text_area :content, name: "content", class: "form-control", id: "content", autocomplete: "off",  placeholder: "難易度も書き込んでください &#x203B;300字以内".html_safe, maxlength: "310" ,required: true %>
+            <div class="invalid-feedback">
+              概要を入力してください
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "期限 :", class: "text-info", for: "limitday" %>
+            <div class="form-group">
+              <div class="input-group date" id="limitday-picker" data-target-input="nearest">
+                <%= f.text_field :limitday, name: "limitday", class: "form-control datetimepicker-input", id: "limitday", autocomplete: "off",  placeholder: "期限", data: {target: "#limitday-picker"}, required: true %>
+                <div class="input-group-append" data-target="#limitday-picker" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+                <div class="invalid-feedback">
+                  期限を入力してください
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "場所 (任意) :", class: "text-info", for: "place" %>
+            <%= f.text_field :place, name: "place", class: "form-control", id: "place", autocomplete: "off",  placeholder: "場所" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "縛り :", class: "text-info", for: "tie" %>
+            <%= f.text_field :tie, name: "tie", class: "form-control", id: "tie", autocomplete: "off",  placeholder: "縛り" , required: true%>
+            <div class="invalid-feedback">
+              縛りを入力してください
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "画像 (任意):", class: "text-info" %>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Upload</span>
+              </div>
+              <div class="custom-file">
+                <%= f.file_field :file_name, name: "pimage", class: 'custom-file-input', accept: 'image/png, image/jpeg', id: "pimage" %>
+                <label class="custom-file-label" for="pimage">画像を選択</label>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-info btn-md" onclick="make_post()">投稿</button>
+
+        <% end %>
       </div>
-
-      <p>場所<span>（任意）</span></p>
-      <input type="text" name="place" value="<%= @post.place %>">
-
-      <p>縛り</p>
-      <div class="tie">
-        <input type="text" name="tie" value="<%= @post.tie %>" placeholder="特にない場合、「無し」と記述">
-      </div>
-
-      <div class="pimage">
-      <p>画像</p>
-      <input name="pimage" type="file">
-      </div>
-
-      <% if @post.post_image %>
-        <div class="post-thumb">
-          <img src="<%= "#{@post.post_image.thumb}" %>">
-        </div>
-      <% end %>
-
-
-      <div class="post-btn">
-          <button onclick="make_post()">投稿</button>
-      </div>
-
     </div>
   </div>
-  <% end %>
-
 </div>
+
+<script>
+    $('#limitday-picker').datetimepicker({
+        language: 'ja',
+        format: 'YYYY-MM-DD HH:mm'
+    });
+
+    function make_post() {
+
+        let theme_form = document.getElementById("createPost");
+
+        if(theme_form.checkValidity() === false){
+            theme_form.classList.add("was-validated");
+            return;
+        }
+
+        let limitday = $('#limitday');
+        if(moment(limitday.val(),'YYYY/DD/MM HH:mm').isValid()){
+            limitday.val( moment(limitday.val(),'YYYY/DD/MM HH:mm').utc().format() );
+            alert("記述するフォーマットに誤りがあります");
+            return;
+        }
+
+        console.log(limitday.val());
+        theme_form.submit();
+    }
+
+
+    window.onload = function () {
+        document.getElementById("createPost").classList.remove("was-validated");
+    };
+</script>
