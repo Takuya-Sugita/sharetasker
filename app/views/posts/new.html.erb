@@ -8,7 +8,7 @@
 
           <div class="form-group">
             <%= f.label "タイトル:", class: "text-info", for: "title" %>
-            <%= f.text_field :title, name: "title", class: "form-control", id: "title", autofocus: true, autocomplete: "off", placeholder: "タイトル", required: true%>
+            <%= f.text_field :title, name: "title", class: "form-control", id: "title", autofocus: true, autocomplete: "off", placeholder: "タイトル", maxlength: "20", required: true%>
             <div class="invalid-feedback">
               タイトルを入力してください
             </div>
@@ -16,7 +16,7 @@
 
           <div class="form-group">
             <%= f.label "概要 :", class: "text-info", for: "content" %>
-            <%= f.text_area :content, name: "content", class: "form-control", id: "content", autocomplete: "off",  placeholder: "難易度も書き込んでください &#x203B;300字以内".html_safe, maxlength: "310" ,required: true %>
+            <%= f.text_area :content, name: "content", class: "form-control", id: "content", autocomplete: "off",  placeholder: "難易度も書き込んでください &#x203B;300字以内".html_safe, maxlength: "300" ,required: true %>
             <div class="invalid-feedback">
               概要を入力してください
             </div>
@@ -72,13 +72,9 @@
 </div>
 
 <script>
-    $('#limitday-picker').datetimepicker({
-        language: 'ja',
-        format: 'YYYY-MM-DD HH:mm'
-    });
+    let limitday_format='YYYY-MM-DD HH:mm';
 
     function make_post() {
-
         let theme_form = document.getElementById("createPost");
 
         if(theme_form.checkValidity() === false){
@@ -87,13 +83,12 @@
         }
 
         let limitday = $('#limitday');
-        if(moment(limitday.val(),'YYYY/DD/MM HH:mm').isValid()){
-            limitday.val( moment(limitday.val(),'YYYY/DD/MM HH:mm').utc().format() );
+        if(moment(limitday.val(),limitday_format).isValid() === false ){
             alert("記述するフォーマットに誤りがあります");
             return;
         }
 
-        console.log(limitday.val());
+        limitday.val( moment(limitday.val(),limitday_format).utc().format() );
         theme_form.submit();
     }
 
@@ -106,5 +101,9 @@
         document.getElementById("tie").value="";
 
         document.getElementById("createPost").classList.remove("was-validated");
+
+        $('#limitday-picker').datetimepicker({
+            format: limitday_format
+        });
     };
 </script>

@@ -22,15 +22,20 @@ class CommentsController < ApplicationController
       flash[:notice] = "コメントしました"
       redirect_to("/posts/#{params[:id]}")
     else
+      flash[:alert] = "コメントに失敗しました"
       redirect_to("/posts/#{params[:id]}")
     end
   end
 
   def destroy
     @comment = Comment.find_by(id: params[:id])
-    @comment.destroy
-    flash[:notice] = "コメントを削除しました"
-    redirect_to("/posts/index")
+    if @comment.destroy
+      flash[:notice] = "コメントを削除しました"
+      redirect_to posts_path(@comment.post_id)
+    else
+      flash[:alert] = "コメントの削除に失敗しました"
+      redirect_to posts_path(@comment.post_id)
+    end
   end
 
   def confirm_correct_user
@@ -40,8 +45,5 @@ class CommentsController < ApplicationController
       redirect_to("posts/index")
     end
   end
-
-
-
 
 end

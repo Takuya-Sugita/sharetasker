@@ -25,8 +25,8 @@ Rails.application.routes.draw do
     get "reconfirm" => "users/confirmations#new"
   end
 
-  post 'likes/:post_id/create' => 'likes#create'
-  post 'likes/:post_id/destroy' => 'likes#destroy'
+  post 'likes/:post_id/create' => 'likes#create', as: "likes_create"
+  post 'likes/:post_id/destroy' => 'likes#destroy', as: "likes_destroy"
 
   # get 'signup' => 'users/registrations#new'
   # post 'login' => 'users/sessions#login'
@@ -50,14 +50,14 @@ Rails.application.routes.draw do
 
   get 'posts/index' => 'posts#index'
   get 'posts/new' => 'posts#new'
-  get 'posts/:id' => 'posts#show'
+  get 'posts/:id' => 'posts#show', as: "posts"
   post 'posts/create' => 'posts#create', as: "posts_create"
   get 'posts/:id/edit' => 'posts#edit', as: "posts_edit"
   post 'posts/:id/update' => 'posts#update', as: "posts_update"
-  post 'posts/:id/destroy' => 'posts#destroy'
+  post 'posts/:id/destroy' => 'posts#destroy', as: "posts_destroy"
 
-  post 'comments/:id/create' => 'comments#create'
-  post 'comments/:id/destroy' => 'comments#destroy'
+  post 'comments/:id/create' => 'comments#create', as: "comments_create"
+  post 'comments/:id/destroy' => 'comments#destroy', as: "comments_destroy"
 
 
 

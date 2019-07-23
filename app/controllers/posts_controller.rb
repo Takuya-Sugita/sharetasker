@@ -24,7 +24,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    puts current_user
     @post = Post.new(
       title: params[:title],
       content: params[:content],
@@ -51,6 +50,7 @@ class PostsController < ApplicationController
       flash[:notice] = "TASKを作成！！さぁ、チャレンジしよう！！"
       redirect_to posts_index_path
     else
+      flash[:alert] = "作成時にエラーが発生しました"
       redirect_to posts_new_path
     end
 
@@ -87,14 +87,14 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @post.destroy
     flash[:notice] = "TASKを削除しました"
-    redirect_to("/posts/index")
+    redirect_to posts_index_path
   end
 
   def ensure_correct_user
     @post = Post.find_by(id: params[:id])
     if @post.user_id != current_user.id
-      flash[:notice] = "権限がありません"
-      redirect_to("/posts/index")
+      flash[:alert] = "権限がありません"
+      redirect_to posts_index_path
     end
   end
 

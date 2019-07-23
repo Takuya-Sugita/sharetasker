@@ -1,191 +1,412 @@
-<div class="posts-back">
-  <div class="posts-show-table">
+<div class="main d-flex user-form show-task">
+  <div class="container">
+    <div class="card">
+      <div class="card-body  d-flex align-items-center ">
+        <%= form_with model: @post, url: posts_update_path, method: "post", local: true, class: "form", id: 'createPost', novalidate: true do |f| %>
 
-<!-- ----------------------------------post #S--------------------------------- -->
+          <h3 class="text-center text-info">TASKの詳細</h3>
+
+          <!--          <div class="form-group">-->
+          <%#= f.label "画像 (任意):", class: "text-info" %>
+          <!--            <div class="input-group">-->
+          <!--              <div class="input-group-prepend">-->
+          <!--                <span class="input-group-text">Upload</span>-->
+          <!--              </div>-->
+          <!--              <div class="custom-file">-->
+          <%#= f.file_field :file_name, name: "pimage", class: 'custom-file-input', accept: 'image/png, image/jpeg', id: "pimage" %>
+          <!--                <label class="custom-file-label" for="pimage">画像を選択</label>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
 
 
-    <%= link_to("/users/#{@user.id}") do %>
-     <div class="post">
-
-
-      <div class="post-show-user">
-        <%= link_to("/users/#{@user.id}") do %>
-        <div class="post-user-image">
-          <img src="<%= "#{@user.image_name}" %>">
-        </div>
-        <%= @user.name %>
-        <% end %>
-      </div>
-    <% end %>
-
-    <div class="post-created-date">
-      <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %><br>
-      <p>期限:<%= @post.limitday %></p>
-      <p>場所:<%= @post.place %></p>
-    </div>
-
-    <% if @post.user_id == current_user.id %>
-      <%= link_to("/posts/#{@post.id}/destroy", {method: "post"}) do %>
-        <div class="destroy-btn">
-          <p>削除</p>
-        </div>
-      <% end %>
-    <% end %>
-
-    <div class="challenge-tab">
-      <% if Like.find_by(user_id: current_user.id, post_id: @post.id)%>
-        <%= link_to("/likes/#{@post.id}/destroy", {method: "post"}) do %>
-          <div class="challenge-on">
-            <p>チャレンジ中</p>
-          </div>
-        <% end %>
-
-        <div class="explain-challenge-btn">
-          <p>クリックしてチャレンジをキャンセル</p>
-        </div>
-
-      <% else %>
-          <%= link_to("/likes/#{@post.id}/create", {method: "post"}) do %>
-            <div class="challenge-off">
-              <p>このTASKをチャレンジする<p>
+          <div class="form-group">
+            <%= f.label "タイトル:", class: "text-info", for: "title" %>
+            <%= f.text_field :title, name: "title", class: "form-control", id: "title", autofocus: true, autocomplete: "off", placeholder: "タイトル", required: true, disabled: true%>
+            <div class="invalid-feedback">
+              タイトルを入力してください
             </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "概要 :", class: "text-info", for: "content" %>
+            <%= f.text_area :content, name: "content", class: "form-control", id: "content", autocomplete: "off",  placeholder: "難易度も書き込んでください &#x203B;300字以内".html_safe, maxlength: "310" ,required: true, disabled: true %>
+            <div class="invalid-feedback">
+              概要を入力してください
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "期限 :", class: "text-info", for: "limitday" %>
+            <div class="form-group">
+              <div class="input-group date" id="limitday-picker" data-target-input="nearest">
+                <%= f.text_field :limitday, name: "limitday", class: "form-control datetimepicker-input", id: "limitday", autocomplete: "off",  placeholder: "期限", data: {target: "#limitday-picker"}, required: true, disabled: true %>
+                <div class="input-group-append" data-target="#limitday-picker" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+                <div class="invalid-feedback">
+                  期限を入力してください
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "場所 (任意) :", class: "text-info", for: "place" %>
+            <%= f.text_field :place, name: "place", class: "form-control", id: "place", autocomplete: "off",  placeholder: "場所", disabled: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "縛り :", class: "text-info", for: "tie" %>
+            <%= f.text_field :tie, name: "tie", class: "form-control", id: "tie", autocomplete: "off",  placeholder: "縛り" , required: true, disabled: true %>
+            <div class="invalid-feedback">
+              縛りを入力してください
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "作成日時 :", class: "text-info", for: "created_at" %>
+            <div class="form-group">
+              <div class="input-group date" id="created_at-picker" data-target-input="nearest">
+                <%= f.text_field :created_at, name: "created_at", class: "form-control datetimepicker-input", id: "created_at", autocomplete: "off",  placeholder: "作成日時", data: {target: "#created_at-picker"}, required: true, disabled: true %>
+                <!--                <div class="input-group-append" data-target="#created_at-picker" data-toggle="datetimepicker">-->
+                <!--                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>-->
+                <!--                </div>-->
+              </div>
+            </div>
+          </div>
+
+
+          <% if current_user %>
+            <%= link_to '編集', posts_edit_path, :class => 'btn btn-success' %>
+            <%= link_to '削除', posts_destroy_path, :class => 'btn btn-danger', method: :post %>
           <% end %>
 
-          <div class="explain-challenge-btn">
-            <p>クリックしてTASKをチャレンジ</p>
-          </div>
 
-      <% end %>
-    </div>
-
-    <div class="posts-show-title">
-      <h1><%= @post.title %></h1>
-    </div>
-
-    <% if @post.post_image %>
-      <div class="post-image">
-        <img src="<%= "#{@post.post_image}" %>">
-      </div>
-    <% end %>
-
-    <div class="posts-show-content">
-      <%= @post.content %>
-    </div>
-
-    <div class="posts-show-tie">
-      <h3>縛り内容</h3>
-      <%= @post.tie %>
-    </div>
-
-    <% if @post.user_id == current_user.id %>
-      <%= link_to( "/posts/#{@post.id}/edit") do %>
-        <div class="edit-btn">
-          <p>投稿を編集</p>
-        </div>
-      <% end %>
-    <% end %>
-
-
-
-     <!-- ---------------------------------------post #E------------------------------------ -->
-
-
-
-    <div class="count-like">
-      <p>このタスクをチャレンジ中の人数</p><%= @likes_count %>
-      <p>人</p>
-    </div>
-
-
-    <br>
-
-    <%= form_tag("/comments/#{@post.id}/create", {multipart: true}) do %>
-    <div class="comment-form">
-      <p>コメント/達成報告</p>
-      <div class="form-body">
-
-        <% @post.errors.full_messages.each do |message| %>
-          <div class="form-error">
-            <%= message %>
-          </div>
-        <% end %>
-
-        <textarea name="comment" ></textarea><br>
-        <input name="cimage" type="file" accept="image/jpeg, image/png"><br>
-        <input type="submit" value="投稿">
-      </div>
-    </div>
-    <% end %>
-
-  </div>
-
-
-      <h1>コメント</h1>
-      <% if @comments.exists? %>
-
-        <% @comments.each do |comment| %>
-        <div class="comment-body">
-            <%= link_to("/users/#{comment.user_id}") do %>
-              <div class="comment-user-image">
-                <img src="<%= "#{comment.user.image_name}"%>">
-              </div>
-            <% end %>
-
-
-            <% if comment.comment_image? %>
-              <div class="comment-image">
-                <img src="<%= "#{comment.comment_image}" %>">
-              </div>
-            <% end %>
-
-            <div class="comment-content">
-              <%= comment.comment %>
-            </div>
-
-            <% if current_user.id == comment.user_id %>
-              <%= link_to("/comments/#{comment.id}/destroy", {method: "post"}) do %>
-                <div class="edit-destroy-btn">
-                  <p>削</p>
-                </div>
+          <hr class="border-info show-divider">
+          <h3 class="text-center text-info">チャレンジャーの詳細</h3>
+          <div class="form-group">
+            <label class="text-dark" for="count-like">このタスクをチャレンジ中の人数 : <span class='font-weight-bold'><%= @likes_count %></span> 人</label>
+            <div class="w-100">
+              <% if Like.find_by(user_id: current_user.id, post_id: @post.id)%>
+                <%= link_to 'チャレンジをキャンセル', likes_destroy_path(@post), :class => 'btn btn-danger mb-3', method: :post %>
+              <% else %>
+                <%= link_to 'TASKをチャレンジ', likes_create_path(@post), :class => 'btn btn-primary mb-3', method: :post %>
               <% end %>
+
+              <% if @liked_users.exists? %>
+                <button type="button" class="btn btn-info mb-3" data-toggle="modal" data-target="#show-challenger">挑戦中のユーザー</button>
+              <% end %>
+
+            </div>
+          </div>
+
+
+          <hr class="border-info show-divider">
+          <h3 class="text-center text-info">コメント&nbsp;&middot;&nbsp;達成報告</h3>
+          <button type="button" class="btn btn-info mb-3" data-toggle="modal" data-target="#post-comment">コメントを投稿する</button>
+
+
+          <% if @comments.exists? %>
+            <% @comments.each do |comment| %>
+              <div class="form-group">
+                <div class="card-header">
+                  <strong class="mr-3"><%= comment.user.name %></strong><span class="text-muted mr-3 comment-created_at"><%= comment.created_at %></span>
+                  <% if current_user.id == comment.user_id %>
+                    <%= link_to '削除', comments_destroy_path(comment), :class => 'btn btn-danger btn-sm', method: :post %>
+                  <% end %>
+                </div>
+                <div class="card-body border-bottom">
+                  <%= comment.comment %>
+                </div>
+              </div>
             <% end %>
+          <% else %>
+            <p class="text-info text-center">コメントはありません</p>
+          <% end %>
 
-        </div>
-        <% end %>
-      <% else %>
-      <div class="nothing-comment">
-        <p>コメントはありません</p>
-      </div>
-      <% end %>
-
-  <div class="challenge-zone-title">
-    <h1>このタスクに挑戦中のユーザー</h1>
-  </div>
-
-  <div class="challenging-user-box">
-    <% if @liked_users.exists? %>
-      <% @liked_users.each do |liked_user| %>
-      <div class="challenging-user">
-        <%=  link_to("/users/#{liked_user.id}") do %>
-        <div class="user_image">
-          <img src="<%= "#{liked_user.image_name}"%>" alt="defa">
-        </div>
         <% end %>
       </div>
-      <% end %>
-
-    <% else %>
-        <div class="nothing-challenger">
-          <p>チャレンジャーはいません</p>
-        </div>
-    <% end %>
-  </div>
-
-
-
-
-
-
-
+    </div>
   </div>
 </div>
+
+
+<% if @liked_users.exists? %>
+  <!-- Modal -->
+  <div class="modal fade" id="show-challenger" tabindex="-1" role="dialog" aria-labelledby="show-challenger-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="show-challenger-title">挑戦中のユーザー</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group">
+            <% @liked_users.each do |liked_user| %>
+              <li class="list-group-item"><p class="mb-0"><%= link_to liked_user.name, profile_path(liked_user)%></p></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<!-- Modal -->
+<div class="modal fade" id="post-comment" tabindex="-1" role="dialog" aria-labelledby="post-comment-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="post-comment-title">コメントを投稿する</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: @comment, url: comments_create_path(@post), method: "post", local: true, class: "form", id: 'createComment', novalidate: true do |f| %>
+          <div class="form-group">
+            <%= f.text_area :content, name: "comment", class: "form-control", id: "comment", autocomplete: "off",  placeholder: "コメントを書き込んでください &#x203B;200字以内".html_safe, maxlength: "200" ,required: true %>
+            <div class="invalid-feedback">
+              コメントの入力に不正があります
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="make_comment()">投稿する</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    let limitday_format='YYYY-MM-DD HH:mm';
+
+    window.onload = function () {
+        document.getElementById("createPost").classList.remove("was-validated");
+
+        let limitday = $('#limitday');
+        limitday.val( moment(limitday.val()).format(limitday_format) );
+        $('#limitday-picker').datetimepicker({
+            format: limitday_format
+        });
+
+        let created_at = $('#created_at');
+        created_at.val( moment(created_at.val()).format(limitday_format) );
+        $('#created_at-picker').datetimepicker({
+            format: limitday_format
+        });
+
+        let comment_created_at = $('.comment-created_at');
+
+        comment_created_at.each(function(i, elem) {
+            $(elem).text( moment($(elem).text()).format(limitday_format) );
+        });
+        
+        $("#post-comment").on('hidden.bs.modal', function (e) {
+            document.getElementById("comment").value = "";
+            document.getElementById("createComment").classList.remove("was-validated");
+        });
+
+    };
+
+
+    function make_comment() {
+        let theme_form = document.getElementById("createComment");
+
+        if(theme_form.checkValidity() === false){
+            theme_form.classList.add("was-validated");
+            return;
+        }
+
+        theme_form.submit();
+    }
+</script>
+
+
+<!--<div class="posts-back">-->
+<!--  <div class="posts-show-table">-->
+<!--    --------------------------------------post #E-------------------------------------->
+<!--    <div class="count-like">-->
+<!--      <p>このタスクをチャレンジ中の人数</p><%#= @likes_count %>-->
+<!--      <p>人</p>-->
+<!--    </div>-->
+<!--    <br>-->
+
+<%#= form_tag("/comments/#{@post.id}/create", {multipart: true}) do %>
+<!--      <div class="comment-form">-->
+<!--        <p>コメント/達成報告</p>-->
+<!--        <div class="form-body">-->
+
+<%# @post.errors.full_messages.each do |message| %>
+<!--            <div class="form-error">-->
+<%#= message %>
+<!--            </div>-->
+<%# end %>
+
+<!--          <textarea name="comment" ></textarea><br>-->
+<!--          <input name="cimage" type="file" accept="image/jpeg, image/png"><br>-->
+<!--          <input type="submit" value="投稿">-->
+<!--        </div>-->
+<!--      </div>-->
+<%# end %>
+
+<!--  </div>-->
+
+
+<!--  <h1>コメント</h1>-->
+<%# if @comments.exists? %>
+
+<%# @comments.each do |comment| %>
+<!--      <div class="comment-body">-->
+<%#= link_to("/users/#{comment.user_id}") do %>
+<!--          <div class="comment-user-image">-->
+<!--            <img src="<%#= "#{comment.user.image_name}"%>">-->
+<!--          </div>-->
+<%# end %>
+
+
+<%# if comment.comment_image? %>
+<!--          <div class="comment-image">-->
+<!--            <img src="<%#= "#{comment.comment_image}" %>">-->
+<!--          </div>-->
+<%# end %>
+
+<!--        <div class="comment-content">-->
+<%#= comment.comment %>
+<!--        </div>-->
+
+<%# if current_user.id == comment.user_id %>
+<%#= link_to("/comments/#{comment.id}/destroy", {method: "post"}) do %>
+<!--            <div class="edit-destroy-btn">-->
+<!--              <p>削</p>-->
+<!--            </div>-->
+<%# end %>
+<%# end %>
+
+<!--      </div>-->
+<%# end %>
+<%# else %>
+<!--    <div class="nothing-comment">-->
+<!--      <p>コメントはありません</p>-->
+<!--    </div>-->
+<%# end %>
+
+<!--  <div class="challenge-zone-title">-->
+<!--    <h1>このタスクに挑戦中のユーザー</h1>-->
+<!--  </div>-->
+
+<!--  <div class="challenging-user-box">-->
+<%# if @liked_users.exists? %>
+<%# @liked_users.each do |liked_user| %>
+<!--        <div class="challenging-user">-->
+<%#=  link_to("/users/#{liked_user.id}") do %>
+<!--            <div class="user_image">-->
+<!--              <img src="<%#= "#{liked_user.image_name}"%>" alt="defa">-->
+<!--            </div>-->
+<%# end %>
+<!--        </div>-->
+<%# end %>
+
+<%# else %>
+<!--      <div class="nothing-challenger">-->
+<!--        <p>チャレンジャーはいません</p>-->
+<!--      </div>-->
+<%# end %>
+<!--  </div>-->
+
+
+<!--  ----------------------------------post #S----------------------------------->
+
+
+<%#= link_to("/users/#{@user.id}") do %>
+<!--    <div class="post">-->
+
+
+<!--      <div class="post-show-user">-->
+<%#= link_to("/users/#{@user.id}") do %>
+<!--          <div class="post-user-image">-->
+<!--            <img src="<%#= "#{@user.image_name}" %>">-->
+<!--          </div>-->
+<%#= @user.name %>
+<%# end %>
+<!--      </div>-->
+<%# end %>
+
+<!--  <div class="post-created-date">-->
+<!--    <%#= @post.created_at.strftime("%Y-%m-%d %H:%M") %><br>-->
+<!--    <p>期限:<%#= @post.limitday %></p>-->
+<!--    <p>場所:<%#= @post.place %></p>-->
+<!--  </div>-->
+
+<%# if @post.user_id == current_user.id %>
+<%#= link_to("/posts/#{@post.id}/destroy", {method: "post"}) do %>
+<!--      <div class="destroy-btn">-->
+<!--        <p>削除</p>-->
+<!--      </div>-->
+<%# end %>
+<%# end %>
+
+<!--  <div class="challenge-tab">-->
+<%# if Like.find_by(user_id: current_user.id, post_id: @post.id)%>
+<%#= link_to("/likes/#{@post.id}/destroy", {method: "post"}) do %>
+<!--        <div class="challenge-on">-->
+<!--          <p>チャレンジ中</p>-->
+<!--        </div>-->
+<%# end %>
+
+<!--      <div class="explain-challenge-btn">-->
+<!--        <p>クリックしてチャレンジをキャンセル</p>-->
+<!--      </div>-->
+
+<%# else %>
+<%#= link_to("/likes/#{@post.id}/create", {method: "post"}) do %>
+<!--        <div class="challenge-off">-->
+<!--          <p>このTASKをチャレンジする<p>-->
+<!--        </div>-->
+<%# end %>
+
+<!--      <div class="explain-challenge-btn">-->
+<!--        <p>クリックしてTASKをチャレンジ</p>-->
+<!--      </div>-->
+
+<%# end %>
+<!--  </div>-->
+
+<!--  <div class="posts-show-title">-->
+<!--    <h1><%#= @post.title %></h1>-->
+<!--  </div>-->
+
+<%# if @post.post_image %>
+<!--    <div class="post-image">-->
+<!--      <img src="<%#= "#{@post.post_image}" %>">-->
+<!--    </div>-->
+<%# end %>
+
+<!--  <div class="posts-show-content">-->
+<%#= @post.content %>
+<!--  </div>-->
+
+<!--  <div class="posts-show-tie">-->
+<!--    <h3>縛り内容</h3>-->
+<%#= @post.tie %>
+<!--  </div>-->
+
+<%# if @post.user_id == current_user.id %>
+<%#= link_to( "/posts/#{@post.id}/edit") do %>
+<!--      <div class="edit-btn">-->
+<!--        <p>投稿を編集</p>-->
+<!--      </div>-->
+<%# end %>
+<%# end %>
+
+<!--  </div>-->
+<!--</div>-->

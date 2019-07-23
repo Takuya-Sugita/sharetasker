@@ -1,6 +1,6 @@
-// user's login/registration/edit
 .user-form{
   height: calc(100vh - 56px);
+  margin-top: 60px;
 }
 
 .user-form form {
@@ -8,6 +8,31 @@
 }
 
 
+// show user's task
+.show-task{
+  height: calc(100vh - 56px);
+  margin-top: 80px;
+}
+
+.show-task form{
+  width: 100%;
+}
+
+hr.show-divider{
+  border-width: .2rem;
+}
+
+#show-challenger ul{
+  white-space: nowrap;
+  max-height: 12em;
+  overflow:auto;
+}
+
+#show-challenger p{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 //.users-back {
 // padding-top: 60px;
 // width: 100%;

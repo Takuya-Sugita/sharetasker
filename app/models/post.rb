@@ -26,14 +26,10 @@ class Post < ApplicationRecord
   validates :content, {presence: true, length: {maximum: 300}}
   validates :user_id, {presence: true}
   validates :limitday, {presence: true}
-  validates :place, {presence: true}
+  validates :place, {presence: false}
   validates :tie, {presence: true}
 
   def user
-    return User.find_by(id: self.user_id)
+    User.find_by(id: self.user_id)
   end
-
-
-
-
 end
