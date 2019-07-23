@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 
 
   def set_ransack
-    @search = Post.ransack(params[:q])
+    @task_search = Post.ransack(params[:q])
   end
 
 

@@ -122,8 +122,9 @@ class UsersController < ApplicationController
   # end
 
   def search
-    @search = User.ransack(params[:q])
-    @users = @search.result(distinct: true)
+    # @user_search = User.ransack(params[:q])
+    # @users = @user_search.result(distinct: true)
+    @users = User.all.order(created_at: :desc)
   end
 
 end

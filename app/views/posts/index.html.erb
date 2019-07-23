@@ -1,32 +1,44 @@
-<div class="container rounded-lg" style="margin-top: 80px; background-color: pink;">
+<div class="container rounded-lg" style="margin-top: 80px; background-color: paleturquoise;">
   <h1 class="text-center font-weight-bold pt-2">Public Challenge !!</h1>
   <hr>
   <div class="row">
 
-    <% @public_posts.each do |public_post| %>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card mb-4 shadow-sm">
-          <img src="" width="100%" height="225" style="background-color: #1AD027">
-          <div class="card-body">
-            <h5 class="card-title"><%= public_post.title %></h5>
-            <p class="card-text"><%= public_post.content %></p>
+    <% if @public_posts.any? %>
+      <% @public_posts.each do |public_post| %>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card mb-4 shadow-sm">
+            <img src="" width="100%" height="225" style="background-color: #1AD027">
+            <div class="card-body">
+              <h5 class="card-title"><%= public_post.title %></h5>
+              <p class="card-text"><%= public_post.content %></p>
 
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <%= link_to '詳細', posts_path(public_post), :class => 'btn btn-sm btn-outline-primary' %>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <%= link_to '詳細', posts_path(public_post), :class => 'btn btn-sm btn-outline-primary' %>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      <% end %>
+    <% else %>
+      <div class="col-sm-12">
+        <h5 class="text-center font-weight-bold">Public Challengeはありません．</h5>
       </div>
     <% end %>
   </div>
 </div>
 
 <div class="container" style="margin-top: 80px">
-  <% if @re_posts.any? %>
+
+  <% if @task_search.title_cont %>
+    <h1 class="text-center font-weight-bold"><%= @task_search.title_cont %> の検索結果</h1>
+  <% else %>
     <h1 class="text-center font-weight-bold">チャレンジ一覧</h1>
-    <hr>
+  <% end %>
+  <hr>
+
+  <% if @re_posts.any? %>
     <div class="row">
       <% @re_posts.each do |re_post| %>
         <div class="col-lg-4 col-md-6 col-sm-12">
@@ -47,6 +59,10 @@
       <% end %>
     </div>
   <% else %>
-    <h5 class="text-center font-weight-bold">該当TASKはありませんでした</h5>
+    <% if @task_search.title_cont %>
+      <h5 class="text-center font-weight-bold"><%= @task_search.title_cont %> に該当するTASKはありませんでした</h5>
+    <% else %>
+      <h5 class="text-center font-weight-bold">タスクは未作成です</h5>
+    <% end %>
   <% end %>
 </div>

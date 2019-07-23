@@ -7,8 +7,8 @@ class PostsController < ApplicationController
     @posts = Post.all.order(created_at: :desc)
     @public_posts = Post.where(user_id:1).sample(3)
 
-    @search.sorts = 'created_at desc' if @search.sorts.empty?
-    @re_posts = @search.result
+    @task_search.sorts = 'created_at desc' if @task_search.sorts.empty?
+    @re_posts = @task_search.result
   end
 
   def show
