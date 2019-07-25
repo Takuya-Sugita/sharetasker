@@ -31,7 +31,7 @@
                 </div>
                 <div class="custom-file">
                   <%= f.file_field :fine_name, name: "bimage", class: 'custom-file-input', accept: 'image/png, image/jpeg', id: "bimage" %>
-                  <label class="custom-file-label" for="bimage">背景画像を選択</label>
+                  <label class="custom-file-label" for="bimage" id="bimage-label">背景画像を選択(4MBまで)</label>
                 </div>
               </div>
             </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="custom-file">
                   <%= f.file_field :fine_name, name: "image", class: 'custom-file-input', accept: 'image/png, image/jpeg', id: "image" %>
-                  <label class="custom-file-label" for="image">アイコン画像を選択</label>
+                  <label class="custom-file-label" for="image" id="image-label">アイコン画像を選択(4MBまで)</label>
                 </div>
               </div>
             </div>
@@ -113,3 +113,73 @@
     </div>
   </div>
 </div>
+
+
+<script>
+    // 画像の最大ファイルサイズ（4MB）
+    let maxSize = 4 * 1024 * 1024;
+
+    window.onload = function () {
+
+        $('#bimage').on("change",function () {
+
+            let files = this.files;
+
+            if (files.length > 0) {
+                // 選択されたファイル情報を取得
+                let file = files[0];
+                // readerのresultプロパティに、データURLとしてエンコードされたファイルデータを格納
+                let reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function() {
+
+                    // 画像以外は無視 image/png, image/jpeg
+                    if (!file ||
+                        ( file.type !== 'image/png' && file.type !== 'image/jpeg' ) )
+                    {
+                        return;
+                    }
+
+
+                    // 指定したサイズを超える画像は無視
+                    if (file.size > maxSize) {
+                        return;
+                    }
+
+                    document.getElementById("bimage-label").innerText = file.name;
+                }
+            }
+        });
+
+        $('#image').on("change",function () {
+
+            let files = this.files;
+
+            if (files.length > 0) {
+                // 選択されたファイル情報を取得
+                let file = files[0];
+                // readerのresultプロパティに、データURLとしてエンコードされたファイルデータを格納
+                let reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function() {
+
+                    // 画像以外は無視 image/png, image/jpeg
+                    if (!file ||
+                        ( file.type !== 'image/png' && file.type !== 'image/jpeg' ) )
+                    {
+                        return;
+                    }
+
+
+                    // 指定したサイズを超える画像は無視
+                    if (file.size > maxSize) {
+                        return;
+                    }
+
+                    document.getElementById("image-label").innerText = file.name;
+                }
+            }
+        });
+
+    };
+</script>

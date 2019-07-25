@@ -58,7 +58,7 @@
               </div>
               <div class="custom-file">
                 <%= f.file_field :file_name, name: "pimage", class: 'custom-file-input', accept: 'image/png, image/jpeg', id: "pimage" %>
-                <label class="custom-file-label" for="pimage">画像を選択</label>
+                <label id="pimage-label" class="custom-file-label" for="pimage">画像を選択(4MBまで)</label>
               </div>
             </div>
           </div>
@@ -73,6 +73,53 @@
 
 <script>
     let limitday_format='YYYY-MM-DD HH:mm';
+
+    // 画像の最大ファイルサイズ（4MB）
+    let maxSize = 4 * 1024 * 1024;
+
+    window.onload = function () {
+
+        document.getElementById("title").value="";
+        document.getElementById("content").value="";
+        document.getElementById("place").value="";
+        document.getElementById("tie").value="";
+
+        document.getElementById("createPost").classList.remove("was-validated");
+
+        $('#limitday-picker').datetimepicker({
+            format: limitday_format
+        });
+
+        $('#pimage').on("change",function () {
+
+            let files = this.files;
+
+            if (files.length > 0) {
+                // 選択されたファイル情報を取得
+                let file = files[0];
+                // readerのresultプロパティに、データURLとしてエンコードされたファイルデータを格納
+                let reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function() {
+
+                    // 画像以外は無視 image/png, image/jpeg
+                    if (!file ||
+                        ( file.type !== 'image/png' && file.type !== 'image/jpeg' ) )
+                    {
+                        return;
+                    }
+
+
+                    // 指定したサイズを超える画像は無視
+                    if (file.size > maxSize) {
+                        return;
+                    }
+
+                    document.getElementById("pimage-label").innerText = file.name;
+                }
+            }
+        });
+    };
 
     function make_post() {
         let theme_form = document.getElementById("createPost");
@@ -93,17 +140,5 @@
     }
 
 
-    window.onload = function () {
 
-        document.getElementById("title").value="";
-        document.getElementById("content").value="";
-        document.getElementById("place").value="";
-        document.getElementById("tie").value="";
-
-        document.getElementById("createPost").classList.remove("was-validated");
-
-        $('#limitday-picker').datetimepicker({
-            format: limitday_format
-        });
-    };
 </script>
