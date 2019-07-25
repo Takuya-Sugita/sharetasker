@@ -2,19 +2,15 @@ Rails.application.routes.draw do
 
   root 'home#top'
 
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  # devise_for :users, :controllers => {}
   devise_for :users, :controllers => {
       :registrations => 'users/registrations',
-      :sessions => 'users/sessions',
-      # :password => "passwords"
+      :sessions => 'users/sessions'
   }
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   devise_scope :user do
     get "signup", :to => "users/registrations#new"
     get "login", :to => "users/sessions#new"
@@ -28,10 +24,6 @@ Rails.application.routes.draw do
   post 'likes/:post_id/create' => 'likes#create', as: "likes_create"
   post 'likes/:post_id/destroy' => 'likes#destroy', as: "likes_destroy"
 
-  # get 'signup' => 'users/registrations#new'
-  # post 'login' => 'users/sessions#login'
-  # post 'logout' => 'users/sessions#destroy'
-
   get 'users/index' => 'users#index'
   get 'users/new' => 'users#new'
   get 'users/follows' => 'users#follows'
@@ -40,8 +32,7 @@ Rails.application.routes.draw do
   # post 'users/create' => 'users/registrations#create'
   # get 'users/:id/edit' => 'users#edit'
   # post 'users/:id/update' => 'users#update'
-  get 'users/:id/likes' => 'users#likes'
-
+  # get 'users/:id/likes' => 'users#likes'
   # get 'users/:id/followers' => 'users#followers'
 
   post 'relationships/:id/create' => 'relationships#create'
@@ -60,11 +51,8 @@ Rails.application.routes.draw do
   post 'comments/:id/destroy' => 'comments#destroy', as: "comments_destroy"
 
 
-
-
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-
 
 end
