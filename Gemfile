@@ -40,6 +40,8 @@ gem 'mini_magick'
 
 gem 'carrierwave'
 
+gem 'fog-aws'
+
 gem 'mobylette'
 
 
